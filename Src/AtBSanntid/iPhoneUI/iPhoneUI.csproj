@@ -75,6 +75,10 @@
     <Compile Include="SimpleTableViewSource.cs" />
     <Compile Include="MainTabBarControllerDelegate.cs" />
     <Compile Include="MainViewController.cs" />
+    <Compile Include="BusStopMarker.cs" />
+    <Compile Include="CoordinateConverter.cs" />
+    <Compile Include="HoldeplasserViewModel.cs" />
+    <Compile Include="StopInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -82,4 +86,7 @@
       <Properties InternalTargetFrameworkVersion="IPhone" />
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <Content Include="Data\R1615.HPL" />
+  </ItemGroup>
 </Project>

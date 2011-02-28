@@ -7,20 +7,20 @@ using MonoTouch.UIKit;
 using MonoTouch.CoreLocation;
 using MonoTouch.MapKit;
 using System.Threading;
+using Holdeplasser;
 namespace iPhoneUI
 {
 	public class MainViewController : UIViewController
 	{
-		UITableView _tableView;
-		
+		UITableView _tableView;		
 		public override void ViewDidLoad ()
 		{
 			_tableView = new UITableView(View.Bounds, UITableViewStyle.Grouped);
 			
 			//_scrollView = new UIScrollView(View.Bounds);
+			var vm = new HoldeplasserViewModel();
 			
-			_tableView.Source = new AdvancedTableViewSource(new List<string> {"Buenget", "Churchills veg", "Dalen Hageby", "Fagervika", "Fjøslia", "Munkvoll Gård", "Prinsenskrysset"});
-			
+			_tableView.Source = new AdvancedTableViewSource(vm.Stops.Select(s => s.StopName).ToList());
 			View.AddSubview(_tableView);
 		}
 	}
