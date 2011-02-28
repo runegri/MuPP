@@ -79,6 +79,7 @@
     <Compile Include="CoordinateConverter.cs" />
     <Compile Include="HoldeplasserViewModel.cs" />
     <Compile Include="StopInfo.cs" />
+    <Compile Include="NavigationController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

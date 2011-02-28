@@ -1,3 +1,5 @@
 Obj
 Bin
 *.userprefs
+*.pidb
+*.orig
