@@ -11,23 +11,29 @@ namespace iPhoneUI
 {
 	public class MainTabBarController : UITabBarController
 	{
-		MainViewController _mainViewController1, _mainViewController2, _mainViewController3;
+		AllStopsViewController _allStopsViewController;
+		
+		EmptyViewController _mainViewController1, _mainViewController2; 
 		
 		public override void ViewDidLoad ()
 		{
-			_mainViewController1 = new MainViewController();
+			
+			_mainViewController1 = new EmptyViewController();
 			_mainViewController1.Title = "Favoritter";
 			_mainViewController1.TabBarItem = new UITabBarItem(UITabBarSystemItem.Favorites,0);
 			
-			_mainViewController2 = new MainViewController();
-			_mainViewController2.TabBarItem = new UITabBarItem(UITabBarSystemItem.MostRecent,0);
+			_mainViewController2 = new EmptyViewController();
+			_mainViewController2.TabBarItem = new UITabBarItem(UITabBarSystemItem.MostRecent,1);
 			
-			_mainViewController3 = new MainViewController();
-			_mainViewController3.TabBarItem = new UITabBarItem("Holdeplasser", null, 0);
+			_allStopsViewController = new AllStopsViewController();
+			
+			UINavigationController allStopsNavController = new UINavigationController();
+			allStopsNavController.TabBarItem = new UITabBarItem("Holdeplasser", null, 2);			
+			allStopsNavController.PushViewController(_allStopsViewController, false);
 			
 			var tablist = new UIViewController[] 
 			{
-			   _mainViewController1, _mainViewController2, _mainViewController3	
+			   _mainViewController1, _mainViewController2, allStopsNavController	
 			};
 			
 			ViewControllers = tablist;

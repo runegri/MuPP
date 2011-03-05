@@ -44,7 +44,7 @@ namespace Holdeplasser
             }
 
             StopNumber = regToppLine.Substring(StopNrStart, StopNrLength).Substring(4,4).Trim();
-            StopName = StopNumber + " " + regToppLine.Substring(StopNameStart, StopNameLength).Trim();
+            StopName = /*StopNumber + " " +*/ regToppLine.Substring(StopNameStart, StopNameLength).Trim();
             XCoord = regToppLine.Substring(XCoordStart, XCoordLength).Trim();
             YCoord = regToppLine.Substring(YCoordStart, YCoordLength).Trim();
 
