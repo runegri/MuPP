@@ -61,7 +61,7 @@ namespace AtBSanntid
 		
 		private void SelectStop(StopInfo selectedStop)
 		{
-			var center = new CLLocationCoordinate2D(selectedStop.LatLon.Y, selectedStop.LatLon.X);
+			var center = new CLLocationCoordinate2D(selectedStop.LatLon.Latitude, selectedStop.LatLon.Longtitude);
 			var region = new MKCoordinateRegion(center, new MKCoordinateSpan(0.003, 0.003));
 			var marker = new BusStopMarker(selectedStop.StopName, center);
 			

@@ -61,7 +61,7 @@ namespace Holdeplasser
                 {
                     return "";
                 }
-                return SelectedStop.LatLon.Y.ToString().Replace(",", ".");
+                return SelectedStop.LatLon.Latitude.ToString().Replace(",", ".");
             }
         }
 
@@ -73,10 +73,10 @@ namespace Holdeplasser
                 {
                     return "";
                 }
-                return SelectedStop.LatLon.X.ToString().Replace(",", ".");
+                return SelectedStop.LatLon.Longtitude.ToString().Replace(",", ".");
             }
         }
-
+		
         public string SelectedStopName
         {
             get

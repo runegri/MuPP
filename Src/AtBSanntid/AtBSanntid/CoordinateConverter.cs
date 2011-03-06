@@ -176,7 +176,7 @@ namespace Holdeplasser
         *    The public double does not return a value.
         *
         */
-        public Coordinate MapLatLonToXy(double phi, double lambda, double lambda0)
+        public CartesianCoordinate MapLatLonToXy(double phi, double lambda, double lambda0)
         {
 
             /* Precalculate ep2 */
@@ -224,7 +224,7 @@ namespace Holdeplasser
                 + (t / 720.0 * N * Math.Pow(Math.Cos(phi), 6.0) * l6coef * Math.Pow(l, 6.0))
                 + (t / 40320.0 * N * Math.Pow(Math.Cos(phi), 8.0) * l8coef * Math.Pow(l, 8.0));
 
-            return new Coordinate(x, y);
+            return new CartesianCoordinate(x, y);
         }
 
 
@@ -260,7 +260,7 @@ namespace Holdeplasser
         *   to optimize computations.
         *
         */
-        public Coordinate MapXyToLatLon(Coordinate xy, double lambda0)
+        public GeographicCoordinate MapXyToLatLon(CartesianCoordinate xy, double lambda0)
         {
 
             /* Get the value of phif, the footpoint latitude. */
@@ -338,7 +338,7 @@ namespace Holdeplasser
                 + x5frac * x5poly * Math.Pow(xy.X, 5.0)
                 + x7frac * x7poly * Math.Pow(xy.X, 7.0);
 
-            return new Coordinate(RadToDeg(lon), RadToDeg(lat));
+            return new GeographicCoordinate(RadToDeg(lon), RadToDeg(lat));
         }
 
 
@@ -364,7 +364,7 @@ namespace Holdeplasser
         *   The UTM zone used for calculating the values of x and y.
         *
         */
-        public Coordinate LatLonToUtmXy(Coordinate latLon, int zone)
+        public CartesianCoordinate LatLonToUtmXy(CartesianCoordinate latLon, int zone)
         {
             var coordinate = MapLatLonToXy(latLon.X, latLon.Y, UtmCentralMeridian(zone));
 
@@ -399,7 +399,7 @@ namespace Holdeplasser
         *	The public double does not return a value.
         *
         */
-        public Coordinate UtmXyToLatLon(Coordinate utm, int zone, bool southhemi)
+        public GeographicCoordinate UtmXyToLatLon(CartesianCoordinate utm, int zone, bool southhemi)
         {
 
             utm.X -= 500000.0;
@@ -414,18 +414,18 @@ namespace Holdeplasser
             utm.Y /= UTMScaleFactor;
 
             var cmeridian = UtmCentralMeridian(zone);
+			
             return MapXyToLatLon(utm, cmeridian);
 
         }
 
     }
-
-    public struct Coordinate
+    public struct CartesianCoordinate
     {
         public double X;
         public double Y;
 
-        public Coordinate(double x, double y)
+        public CartesianCoordinate(double x, double y)
         {
             X = x;
             Y = y;
@@ -436,4 +436,21 @@ namespace Holdeplasser
             return "(" + X.ToString().Replace(",", ".") + "," + Y.ToString().Replace(",", ".") + ")";
         }
     }
+	
+	public struct GeographicCoordinate
+	{
+		public double Latitude;
+		public double Longtitude;
+		
+		public GeographicCoordinate(double longtitude, double latitude)
+		{
+			Latitude = latitude;
+			Longtitude = longtitude;
+		}
+		
+		public override string ToString ()
+		{
+            return "(" + Longtitude.ToString().Replace(",", ".") + "," + Latitude.ToString().Replace(",", ".") + ")";
+		}
+	}
 }

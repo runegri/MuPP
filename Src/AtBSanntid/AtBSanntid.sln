@@ -31,6 +31,6 @@ Global
 		{3DCC992F-F0E9-465D-ACAE-D9C0380ABF66}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iPhoneUI\iPhoneUI.csproj
+		StartupItem = AtBSanntid\AtBSanntid.csproj
 	EndGlobalSection
 EndGlobal

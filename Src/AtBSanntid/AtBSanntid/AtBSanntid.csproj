@@ -74,9 +74,9 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="BusStopMarker.cs" />
-    <Compile Include="CoordinateConverter.cs" />
     <Compile Include="HoldeplasserViewModel.cs" />
     <Compile Include="StopInfo.cs" />
+    <Compile Include="CoordinateConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />

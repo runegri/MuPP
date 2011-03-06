@@ -32,7 +32,7 @@ namespace Holdeplasser
         public string StopName { get; private set; }
         public string XCoord { get; private set; }
         public string YCoord { get; private set; }
-        public Coordinate LatLon { get; private set; }
+        public GeographicCoordinate LatLon { get; private set; }
 
         private void ParseRegTopp(string regToppLine)
         {
@@ -50,7 +50,7 @@ namespace Holdeplasser
 
             var utmX = double.Parse(XCoord);
             var utmY = double.Parse(YCoord);
-            var utmCoordinate = new Coordinate(utmX, utmY);
+            var utmCoordinate = new CartesianCoordinate(utmX, utmY);
 
             LatLon = new CoordinateConverter().UtmXyToLatLon(utmCoordinate, 32, false);
             
