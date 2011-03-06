@@ -69,17 +69,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="MainApplicationDelegate.cs" />
     <Compile Include="MainTabBarController.cs" />
     <Compile Include="AdvancedTableViewSource.cs" />
     <Compile Include="SimpleTableViewSource.cs" />
-    <Compile Include="MainTabBarControllerDelegate.cs" />
     <Compile Include="MainViewController.cs" />
     <Compile Include="BusStopMarker.cs" />
     <Compile Include="CoordinateConverter.cs" />
     <Compile Include="HoldeplasserViewModel.cs" />
     <Compile Include="StopInfo.cs" />
-    <Compile Include="NavigationController.cs" />
+    <Compile Include="Controller\AllStopsViewController.cs" />
+    <Compile Include="Controller\AllStopsTableViewDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -89,5 +88,10 @@
   </ProjectExtensions>
   <ItemGroup>
     <Content Include="Data\R1615.HPL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RecentStops\" />
+    <Folder Include="FavoriteStops\" />
+    <Folder Include="Controller\" />
   </ItemGroup>
 </Project>
