@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult filename="userservices.disco" referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://195.0.188.74/InfoTransit/userservices.asmx?disco" />
+  </Results>
+</DiscoveryClientResultsFile>
