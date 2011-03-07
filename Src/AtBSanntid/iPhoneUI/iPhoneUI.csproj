@@ -74,6 +74,7 @@
     <Compile Include="BusStopTableViewSource.cs" />
     <Compile Include="EmptyViewController.cs" />
     <Compile Include="TabBarController.cs" />
+    <Compile Include="BusStopViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

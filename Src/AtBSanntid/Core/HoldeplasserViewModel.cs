@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Core
 {
@@ -126,7 +127,8 @@ namespace Core
 				Debug.WriteLine(ex.ToString());
 				throw; 
 			}
-
+			
+			Stops = Stops.OrderBy(si => si.StopName).ToList();
         }
 
         public void RaisePropertyChanged(string propertyName)
