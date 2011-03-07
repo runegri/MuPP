@@ -12,17 +12,26 @@ namespace iPhoneUI
 {
 	public class AllStopsViewController : UIViewController
 	{
+		private IBusStopRepository _busStopRepository;
 		private UITableView _tableView;
+		
+		public AllStopsViewController(IBusStopRepository busStopRepository)
+		{
+			_busStopRepository = busStopRepository;
+		}
+		
+		public AllStopsViewController() : this(new BusStopRepository())
+		{
+			
+		}
 		
 		public override void ViewDidLoad ()
 		{	
-			this.Title = "Holdeplasser";
+			this.Title = "Alle stopp";
 			_tableView = new UITableView(View.Bounds, UITableViewStyle.Grouped);
 			
-			var vm = new HoldeplasserViewModel();
-			
-			_tableView.Source = new BusStopTableViewSource(this, vm.Stops);
-			//_tableView.Delegate = new AllStopsTableViewDelegate();
+			_tableView.Source = new BusStopTableViewSource(this, _busStopRepository.GetAll());
+
 			
 			View.AddSubview(_tableView);
 		}

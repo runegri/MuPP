@@ -7,6 +7,7 @@ namespace iPhoneUI
 {
 	public interface IBusStopRepository
 	{
+		IEnumerable<StopInfo> GetAll();
 		IEnumerable<StopInfo> GetFavorites();
 		IEnumerable<StopInfo> GetMostRecent();
 	}	

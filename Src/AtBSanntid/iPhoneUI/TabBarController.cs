@@ -31,7 +31,7 @@ namespace iPhoneUI
 			_allStopsViewController = new AllStopsViewController();
 			
 			UINavigationController allStopsNavController = new UINavigationController();
-			allStopsNavController.TabBarItem = new UITabBarItem("Holdeplasser", null, 2);			
+			allStopsNavController.TabBarItem = new UITabBarItem("Alle stopp", null, 2);			
 			allStopsNavController.PushViewController(_allStopsViewController, false);
 			
 			var tablist = new UIViewController[] 

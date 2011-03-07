@@ -47,13 +47,12 @@ namespace iPhoneUI
 		{
 			StringBuilder sb = new StringBuilder ();
 			
-			sb.Append (@"<style>
-body,b,p{font-family:Helvetica;font-size:14px}
-</style>");
+			sb.Append (@"<style>body,b,p{font-family:Helvetica;font-size:14px}</style>");
 						
-			sb.Append ("<p>" + _stopInfo.StopName + "</p>" + Environment.NewLine);
-			sb.Append ("<p>" + _stopInfo.StopNumber + "</p>" + Environment.NewLine);
-			sb.Append ("<p>" + _stopInfo.LatLon.X + "," + _stopInfo.LatLon.Y + "</p>" + Environment.NewLine);
+			sb.Append ("<p>Holdeplass navn: " + _stopInfo.StopName + "</p>" + Environment.NewLine);
+			sb.Append ("<p>Holdeplass nr: " + _stopInfo.StopNumber + "</p>" + Environment.NewLine);
+			sb.Append ("<p>Latitude: " + _stopInfo.LatLon.X + "</p>" + Environment.NewLine);
+			sb.Append ("<p>Longitude: " +  _stopInfo.LatLon.Y + "</p>" + Environment.NewLine);
 			
 			return sb.ToString ();
 		}

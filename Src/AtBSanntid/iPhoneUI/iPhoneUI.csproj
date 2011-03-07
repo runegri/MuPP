@@ -71,7 +71,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="Controller\AllStopsViewController.cs" />
     <Compile Include="BusStopTableViewSource.cs" />
-    <Compile Include="EmptyViewController.cs" />
     <Compile Include="TabBarController.cs" />
     <Compile Include="BusStopViewController.cs" />
     <Compile Include="Controller\FavoritesViewController.cs" />
