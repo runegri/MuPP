@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{28212E69-B40A-44A9-954A-3F64554AC224}</ProjectGuid>
+    <ProjectGuid>{7998A5BF-AB14-49D0-96BA-4BF466BF1091}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>iPhoneUI</RootNamespace>
-    <AssemblyName>iPhoneUI</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -24,7 +24,6 @@
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -64,18 +63,6 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Info.plist" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="MainTabBarController.cs" />
-    <Compile Include="AdvancedTableViewSource.cs" />
-    <Compile Include="SimpleTableViewSource.cs" />
-    <Compile Include="MainViewController.cs" />
-    <Compile Include="Controller\AllStopsViewController.cs" />
-    <Compile Include="Controller\AllStopsTableViewDelegate.cs" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
@@ -83,14 +70,15 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Folder Include="RecentStops\" />
-    <Folder Include="FavoriteStops\" />
-    <Folder Include="Controller\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{7998A5BF-AB14-49D0-96BA-4BF466BF1091}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
+    <Content Include="Data\R1615.HPL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusStopMarker.cs" />
+    <Compile Include="CoordinateConverter.cs" />
+    <Compile Include="HoldeplasserViewModel.cs" />
+    <Compile Include="StopInfo.cs" />
   </ItemGroup>
 </Project>

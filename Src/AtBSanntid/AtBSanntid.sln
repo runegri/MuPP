@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtBSanntid", "AtBSanntid\At
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iPhoneUI", "iPhoneUI\iPhoneUI.csproj", "{28212E69-B40A-44A9-954A-3F64554AC224}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{7998A5BF-AB14-49D0-96BA-4BF466BF1091}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -29,8 +31,16 @@ Global
 		{3DCC992F-F0E9-465D-ACAE-D9C0380ABF66}.Release|iPhone.Build.0 = Release|iPhone
 		{3DCC992F-F0E9-465D-ACAE-D9C0380ABF66}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{3DCC992F-F0E9-465D-ACAE-D9C0380ABF66}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{7998A5BF-AB14-49D0-96BA-4BF466BF1091}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{7998A5BF-AB14-49D0-96BA-4BF466BF1091}.Debug|iPhone.Build.0 = Debug|iPhone
+		{7998A5BF-AB14-49D0-96BA-4BF466BF1091}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{7998A5BF-AB14-49D0-96BA-4BF466BF1091}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{7998A5BF-AB14-49D0-96BA-4BF466BF1091}.Release|iPhone.ActiveCfg = Release|iPhone
+		{7998A5BF-AB14-49D0-96BA-4BF466BF1091}.Release|iPhone.Build.0 = Release|iPhone
+		{7998A5BF-AB14-49D0-96BA-4BF466BF1091}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{7998A5BF-AB14-49D0-96BA-4BF466BF1091}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = AtBSanntid\AtBSanntid.csproj
+		StartupItem = iPhoneUI\iPhoneUI.csproj
 	EndGlobalSection
 EndGlobal
