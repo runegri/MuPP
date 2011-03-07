@@ -6,7 +6,7 @@ using System.IO;
 using System.Net;
 using System.Diagnostics;
 
-namespace Holdeplasser
+namespace Core
 {
     public class HoldeplasserViewModel : INotifyPropertyChanged
     {

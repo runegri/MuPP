@@ -9,21 +9,20 @@ using System.Threading;
 
 namespace iPhoneUI
 {
-	public class MainTabBarController : UITabBarController
+	public class TabBarController : UITabBarController
 	{
-		AllStopsViewController _allStopsViewController;
-		
-		EmptyViewController _mainViewController1, _mainViewController2; 
+		private AllStopsViewController _allStopsViewController;		
+		private EmptyViewController _favoritesViewController;
+	    private EmptyViewController _recentViewController; 
 		
 		public override void ViewDidLoad ()
 		{
+			_favoritesViewController = new EmptyViewController();
+			_favoritesViewController.Title = "Favoritter";
+			_favoritesViewController.TabBarItem = new UITabBarItem(UITabBarSystemItem.Favorites,0);
 			
-			_mainViewController1 = new EmptyViewController();
-			_mainViewController1.Title = "Favoritter";
-			_mainViewController1.TabBarItem = new UITabBarItem(UITabBarSystemItem.Favorites,0);
-			
-			_mainViewController2 = new EmptyViewController();
-			_mainViewController2.TabBarItem = new UITabBarItem(UITabBarSystemItem.MostRecent,1);
+			_recentViewController = new EmptyViewController();
+			_recentViewController.TabBarItem = new UITabBarItem(UITabBarSystemItem.MostRecent,1);
 			
 			_allStopsViewController = new AllStopsViewController();
 			
@@ -33,7 +32,7 @@ namespace iPhoneUI
 			
 			var tablist = new UIViewController[] 
 			{
-			   _mainViewController1, _mainViewController2, allStopsNavController	
+			   _favoritesViewController, _recentViewController, allStopsNavController	
 			};
 			
 			ViewControllers = tablist;

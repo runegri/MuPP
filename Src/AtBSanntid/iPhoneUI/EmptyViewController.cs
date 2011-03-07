@@ -8,22 +8,17 @@ using MonoTouch.CoreLocation;
 using MonoTouch.MapKit;
 using System.Threading;
 using Core;
+
 namespace iPhoneUI
 {
-	public class AllStopsViewController : UIViewController
+	public class EmptyViewController : UIViewController
 	{
 		UITableView _tableView;		
 		public override void ViewDidLoad ()
-		{	
-			this.Title = "Holdeplasser";
+		{
 			_tableView = new UITableView(View.Bounds, UITableViewStyle.Grouped);
-			
-			var vm = new HoldeplasserViewModel();
-			
-			_tableView.Source = new BusStopTableViewSource(this, vm.Stops);
-			//_tableView.Delegate = new AllStopsTableViewDelegate();
 			
 			View.AddSubview(_tableView);
 		}
-	}	
+	}
 }

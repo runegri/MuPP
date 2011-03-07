@@ -69,12 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="MainTabBarController.cs" />
-    <Compile Include="AdvancedTableViewSource.cs" />
-    <Compile Include="SimpleTableViewSource.cs" />
-    <Compile Include="MainViewController.cs" />
     <Compile Include="Controller\AllStopsViewController.cs" />
     <Compile Include="Controller\AllStopsTableViewDelegate.cs" />
+    <Compile Include="BusStopTableViewSource.cs" />
+    <Compile Include="EmptyViewController.cs" />
+    <Compile Include="TabBarController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

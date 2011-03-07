@@ -1,6 +1,6 @@
 using System;
 
-namespace Holdeplasser
+namespace Core
 {
     public class StopInfo
     {

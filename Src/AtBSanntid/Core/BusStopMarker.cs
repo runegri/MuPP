@@ -1,7 +1,8 @@
 using System;
 using MonoTouch.MapKit;
 using MonoTouch.CoreLocation;
-namespace AtBSanntid
+
+namespace Core
 {
 	public class BusStopMarker : MKAnnotation
 	{

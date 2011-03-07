@@ -9,29 +9,31 @@ using MonoTouch.MapKit;
 using System.Threading;
 using System.Drawing; 
 using System.Text;
+using Core;
 
 namespace iPhoneUI
 {
-	public class AdvancedTableViewSource : UITableViewSource
+	public class BusStopTableViewSource : UITableViewSource
 	{
 		private List<string> _sectionTitles;
 		private SortedDictionary<int, List<string>> _sectionElements = new SortedDictionary<int, List<string>> ();
 		
 		private UIViewController _controller;
 		
-		public AdvancedTableViewSource (UIViewController controller,  List<string> list)
+		public BusStopTableViewSource (UIViewController controller,  List<StopInfo> busStops)
 		{
 			_controller = controller;
-			_sectionTitles = (from c in list
-				select c.Substring (0, 1)).Distinct ().ToList ();
+			_sectionTitles = (from c in busStops
+				select c.StopName.Substring (0, 1)).Distinct ().ToList ();
+			
 			_sectionTitles.Sort ();
 			
-			foreach (string element in list) {
-				int sectionNum = _sectionTitles.IndexOf (element.Substring (0, 1));
+			foreach (StopInfo stopInfo in busStops) {
+				int sectionNum = _sectionTitles.IndexOf (stopInfo.StopName.Substring (0, 1));
 				if (_sectionElements.ContainsKey (sectionNum)) {
-					_sectionElements[sectionNum].Add (element);
+					_sectionElements[sectionNum].Add (stopInfo.StopName);
 				} else {
-					_sectionElements.Add (sectionNum, new List<string> { element });
+					_sectionElements.Add (sectionNum, new List<string> { stopInfo.StopName });
 				}
 			}
 		}

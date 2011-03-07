@@ -20,13 +20,13 @@ namespace iPhoneUI
 	{
 		UIWindow _window;
 	    
-		MainTabBarController _tabBarController;
+		TabBarController _tabBarController;
 					
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launcOptions)
 		{
 			_window = new UIWindow(UIScreen.MainScreen.Bounds);
 			
-			_tabBarController = new MainTabBarController();
+			_tabBarController = new TabBarController();
 			//_tabBarController.Delegate = new MainTabBarControllerDelegate();
 						
 			_window.AddSubview(_tabBarController.View);
