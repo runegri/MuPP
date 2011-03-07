@@ -20,7 +20,7 @@ namespace iPhoneUI
 		
 		private UIViewController _controller;
 		
-		public BusStopTableViewSource (UIViewController controller,  List<StopInfo> busStops)
+		public BusStopTableViewSource (UIViewController controller,  IEnumerable<StopInfo> busStops)
 		{
 			_controller = controller;
 			_sectionTitles = (from c in busStops

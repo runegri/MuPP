@@ -12,7 +12,8 @@ namespace iPhoneUI
 {
 	public class AllStopsViewController : UIViewController
 	{
-		UITableView _tableView;		
+		private UITableView _tableView;
+		
 		public override void ViewDidLoad ()
 		{	
 			this.Title = "Holdeplasser";
