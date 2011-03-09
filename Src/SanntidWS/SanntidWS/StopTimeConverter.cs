@@ -12,9 +12,17 @@ namespace AtB
         public List<StopTime> GetStopTimes(string stopTimeJson)
         {
             var jObject = JObject.Parse(stopTimeJson);
-
-            return jObject.SelectToken("Orari").Select(token => StopTimeFromToken(token)).ToList();
-        }
+			
+			var times = jObject.SelectToken("Orari");
+			if (times != null && times.Any())
+			{
+				return times.Select(token => StopTimeFromToken(token)).ToList();
+			}
+			else
+			{
+				return new List<StopTime>();
+			}
+		}
 
         private StopTime StopTimeFromToken(JToken token)
         {
