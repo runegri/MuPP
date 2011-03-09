@@ -16,24 +16,24 @@ namespace iPhoneUI
 	public class BusStopTableViewSource : UITableViewSource
 	{
 		private List<string> _sectionTitles;
-		private SortedDictionary<int, List<string>> _sectionElements = new SortedDictionary<int, List<string>> ();
+		private SortedDictionary<int, List<StopInfo>> _sectionElements = new SortedDictionary<int, List<StopInfo>> ();
 		
 		private UIViewController _controller;
 		
-		public BusStopTableViewSource (UIViewController controller,  List<StopInfo> busStops)
+		public BusStopTableViewSource (UIViewController controller,  IEnumerable<StopInfo> busStops)
 		{
 			_controller = controller;
 			_sectionTitles = (from c in busStops
 				select c.StopName.Substring (0, 1)).Distinct ().ToList ();
 			
-			_sectionTitles.Sort ();
+			_sectionTitles.Sort();
 			
 			foreach (StopInfo stopInfo in busStops) {
 				int sectionNum = _sectionTitles.IndexOf (stopInfo.StopName.Substring (0, 1));
 				if (_sectionElements.ContainsKey (sectionNum)) {
-					_sectionElements[sectionNum].Add (stopInfo.StopName);
+					_sectionElements[sectionNum].Add (stopInfo);
 				} else {
-					_sectionElements.Add (sectionNum, new List<string> { stopInfo.StopName });
+					_sectionElements.Add (sectionNum, new List<StopInfo> { stopInfo });
 				}
 			}
 		}
@@ -58,87 +58,45 @@ namespace iPhoneUI
 			return _sectionElements[section].Count;
 		}
 
+		private StopInfo GetStopInfo(NSIndexPath indexPath)
+		{
+			return _sectionElements[indexPath.Section][indexPath.Row];
+		}
+
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			string kCellIdentifier = "mycell";
-			UITableViewCell cell = tableView.DequeueReusableCell (kCellIdentifier);
-			if (cell == null) {
-				// No re-usable cell found, create a new one.
-				cell = new UITableViewCell (UITableViewCellStyle.Default, kCellIdentifier);
-				cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-			}
 			
-			string display = _sectionElements[indexPath.Section][indexPath.Row];
-			cell.TextLabel.Text = display;
+			UITableViewCell cell = CreateOrReuseCell(tableView);
+			
+			StopInfo stopInfo = GetStopInfo(indexPath);
+			cell.TextLabel.Text = stopInfo.StopName;
 			
 			return cell;
 		}
 
-		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			
-			var uivc = new BusStopViewController();
-			//uivc.Title = posts.data[indexPath.Row].@from.name;
+			StopInfo stopInfo = GetStopInfo(indexPath);
+			var uivc = new BusStopViewController(stopInfo);
 			
 			_controller.NavigationController.PushViewController (uivc, true);
 			
-			//string display = _sectionElements[indexPath.Section][indexPath.Row];
-			
-			//showAlert ("RowSelected", "You selected: \"" + display + "\"");
-			
 			// Prevent the blue 'selection indicator' remaining.
-			//tableView.DeselectRow (indexPath, true);
+			tableView.DeselectRow (indexPath, true);
 		}
-
-		private void showAlert (string title, string message)
+		
+		private static UITableViewCell CreateOrReuseCell(UITableView tableView)
 		{
-			using (var alert = new UIAlertView (title, message, null, "OK", null)) {
-				alert.Show ();
-			}
-		}
-	}
+			string kCellIdentifier = "mycell";
+			UITableViewCell cell = tableView.DequeueReusableCell(kCellIdentifier);			
 
-	public class BusStopViewController : UIViewController
-	{
-		public UITextView textView;
-		public UIWebView webView;
-
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
-			// no XIB !
-			webView = new UIWebView { ScalesPageToFit = false };
-			webView.LoadHtmlString (FormatText (), new NSUrl ());
+			if (cell != null) return cell;
 			
-			// Set the web view to fit the width of the app.
-			webView.SizeToFit ();
-			
-			// Reposition and resize the receiver
-			webView.Frame = new RectangleF (0, 0, this.View.Bounds.Width, this.View.Bounds.Height);
-			
-			// Add the table view as a subview
-			this.View.AddSubview (webView);
-			
+			cell = new UITableViewCell (UITableViewCellStyle.Default, kCellIdentifier);
+			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+			return cell;
 		}
-		/// <summary>
-		/// Format the restaurant text for UIWebView
-		/// </summary>
-		private string FormatText ()
-		{
-			StringBuilder sb = new StringBuilder ();
-			
-			sb.Append (@"<style>
-body,b,p{font-family:Helvetica;font-size:14px}
-</style>");
-						
-			sb.Append ("<p>" + "Hei" + "</p>" + Environment.NewLine);
-			sb.Append ("<p>" + "På deg" + "</p>" + Environment.NewLine);
-			sb.Append ("<p>" + "Din lille sei" + "</p>" + Environment.NewLine);
-			
-			
-			return sb.ToString ();
-		}
-	}
 }
 
 
+}

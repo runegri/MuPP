@@ -80,5 +80,7 @@
     <Compile Include="CoordinateConverter.cs" />
     <Compile Include="HoldeplasserViewModel.cs" />
     <Compile Include="StopInfo.cs" />
+    <Compile Include="IBusStopRepository.cs" />
+    <Compile Include="BusStopRepository.cs" />
   </ItemGroup>
 </Project>

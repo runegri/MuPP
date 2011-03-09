@@ -70,10 +70,11 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="Controller\AllStopsViewController.cs" />
-    <Compile Include="Controller\AllStopsTableViewDelegate.cs" />
     <Compile Include="BusStopTableViewSource.cs" />
-    <Compile Include="EmptyViewController.cs" />
     <Compile Include="TabBarController.cs" />
+    <Compile Include="BusStopViewController.cs" />
+    <Compile Include="Controller\FavoritesViewController.cs" />
+    <Compile Include="Controller\MostRecentViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -82,8 +83,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Folder Include="RecentStops\" />
-    <Folder Include="FavoriteStops\" />
     <Folder Include="Controller\" />
   </ItemGroup>
   <ItemGroup>

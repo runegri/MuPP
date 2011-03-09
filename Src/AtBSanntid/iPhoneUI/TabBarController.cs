@@ -12,27 +12,31 @@ namespace iPhoneUI
 	public class TabBarController : UITabBarController
 	{
 		private AllStopsViewController _allStopsViewController;		
-		private EmptyViewController _favoritesViewController;
-	    private EmptyViewController _recentViewController; 
+		private FavoritesViewController _favoritesViewController;
+	    private MostRecentViewController _mostRecentViewController; 
 		
 		public override void ViewDidLoad ()
 		{
-			_favoritesViewController = new EmptyViewController();
-			_favoritesViewController.Title = "Favoritter";
-			_favoritesViewController.TabBarItem = new UITabBarItem(UITabBarSystemItem.Favorites,0);
+			_favoritesViewController = new FavoritesViewController();
 			
-			_recentViewController = new EmptyViewController();
-			_recentViewController.TabBarItem = new UITabBarItem(UITabBarSystemItem.MostRecent,1);
+			UINavigationController favoritesNavController = new UINavigationController();
+			favoritesNavController.TabBarItem = new UITabBarItem(UITabBarSystemItem.Favorites, 0);			
+			favoritesNavController.PushViewController(_favoritesViewController, false);
+
+			_mostRecentViewController = new MostRecentViewController();
+			UINavigationController mostRecentNavController = new UINavigationController();
+			mostRecentNavController.TabBarItem = new UITabBarItem(UITabBarSystemItem.MostRecent, 1);			
+			mostRecentNavController.PushViewController(_mostRecentViewController, false);
 			
 			_allStopsViewController = new AllStopsViewController();
 			
 			UINavigationController allStopsNavController = new UINavigationController();
-			allStopsNavController.TabBarItem = new UITabBarItem("Holdeplasser", null, 2);			
+			allStopsNavController.TabBarItem = new UITabBarItem("Alle stopp", null, 2);			
 			allStopsNavController.PushViewController(_allStopsViewController, false);
 			
 			var tablist = new UIViewController[] 
 			{
-			   _favoritesViewController, _recentViewController, allStopsNavController	
+			   favoritesNavController, mostRecentNavController, allStopsNavController	
 			};
 			
 			ViewControllers = tablist;
