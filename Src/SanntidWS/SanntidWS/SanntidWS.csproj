@@ -95,17 +95,17 @@
       <DependentUpon>MainWindow.xib</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="BusStop.cs" />
     <Compile Include="BusStopListConverter.cs" />
     <Compile Include="CoordinateConverter.cs" />
     <Compile Include="DecimalConverter.cs" />
     <Compile Include="JsonConverterBase.cs" />
-    <Compile Include="Sanntid.cs" />
     <Compile Include="StopTime.cs" />
     <Compile Include="StopTimeConverter.cs" />
     <Compile Include="SanntidView.cs" />
     <Compile Include="AtB\UserServices.cs" />
     <Compile Include="DebugGpsService.cs" />
+    <Compile Include="AtB\Sanntid.cs" />
+    <Compile Include="AtB\BusStop.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />

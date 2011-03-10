@@ -8,9 +8,11 @@ using System.Linq;
 using System.Threading;
 using TinyIoC;
 using GpsTool;
+using MonoTouch.Foundation;
 
 namespace SanntidWS
 {
+	[Preserve(AllMembers=true)]
 	public class SanntidView : UIViewController
 	{
 		private UIButton _loadDataButton;

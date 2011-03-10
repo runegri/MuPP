@@ -3,6 +3,7 @@ using MonoTouch.CoreLocation;
 using MonoTouch.Foundation;
 namespace GpsTool
 {
+	[Preserve(AllMembers=true)]
 	public class IOSGpsService : IGpsService
 	{
 

@@ -423,8 +423,8 @@ namespace AtB
 
     public class CartecianCoordinate
     {
-        public double X { get; private set; }
-        public double Y { get; private set; }
+        public double X { get; set; }
+        public double Y { get; set; }
 
         public CartecianCoordinate(double x, double y)
         {
@@ -440,8 +440,8 @@ namespace AtB
 
     public class GeographicCoordinate
     {
-        public double Latitude { get; private set; }
-        public double Longtitude { get; private set; }
+        public double Latitude { get; set; }
+        public double Longtitude { get; set; }
 
         public GeographicCoordinate(double latitude, double longtitude)
 		{

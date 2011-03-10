@@ -74,5 +74,7 @@
     <Compile Include="IOSGpsService.cs" />
     <Compile Include="TinyIoC.cs" />
     <Compile Include="LocationData.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteConnectionExtensions.cs" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using TinyIoC;
 using GpsTool;
+using AtB;
 
 namespace SanntidWS
 {
@@ -25,6 +26,7 @@ namespace SanntidWS
 			TinyIoCContainer.Current.Register<IGpsService, IOSGpsService>();
 #endif
 			TinyIoCContainer.Current.Register<SanntidView>();
+			TinyIoCContainer.Current.Register<Sanntid>();
 		}
 	}
 
