@@ -7,6 +7,8 @@ namespace iPhoneUI
 {
 	public class BusStopRepository : IBusStopRepository
 	{
+		private List<StopInfo> _mostRecent = new List<StopInfo>();
+		
 		public IEnumerable<StopInfo> GetAll()
 		{
 			var vm = new HoldeplasserViewModel();
@@ -20,7 +22,12 @@ namespace iPhoneUI
 		
 		public IEnumerable<StopInfo> GetMostRecent()
 		{
-			return new List<StopInfo> {new StopInfo("", "Fjøslia","","")};
+			return _mostRecent;
+		}
+		
+		public void AddMostRecent(StopInfo stopInfo) 
+		{
+			_mostRecent.Add(stopInfo);
 		}
 	}	
 }

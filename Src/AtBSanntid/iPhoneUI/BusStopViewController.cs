@@ -19,9 +19,12 @@ namespace iPhoneUI
 		
 		private StopInfo _stopInfo;
 		
+		private IBusStopRepository _busStopRepository = new BusStopRepository();
+		
 		public BusStopViewController (StopInfo stopInfo)
 		{
 			_stopInfo = stopInfo;
+			_busStopRepository.AddMostRecent(_stopInfo);
 			this.Title = _stopInfo.StopName;
 		}
 		
