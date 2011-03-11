@@ -443,10 +443,10 @@ namespace AtB
         public double Latitude { get; private set; }
         public double Longtitude { get; private set; }
 
-        public GeographicCoordinate(double x, double y)
-        {
-            Latitude = x;
-            Longtitude = y;
+        public GeographicCoordinate(double latitude, double longtitude)
+		{
+            Latitude = latitude;
+            Longtitude = longtitude;
         }
 
         public override string ToString()

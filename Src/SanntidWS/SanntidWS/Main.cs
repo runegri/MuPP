@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using TinyIoC;
+using GpsTool;
 
 namespace SanntidWS
 {
@@ -11,7 +13,18 @@ namespace SanntidWS
 	{
 		static void Main (string[] args)
 		{
+			SetupIoCContainer();
 			UIApplication.Main (args);
+		}
+		
+		private static void SetupIoCContainer()
+		{
+#if SIMULATOR
+			TinyIoCContainer.Current.Register<IGpsService, DebugGpsService>();
+#else
+			TinyIoCContainer.Current.Register<IGpsService, IOSGpsService>();
+#endif
+			TinyIoCContainer.Current.Register<SanntidView>();
 		}
 	}
 
@@ -25,7 +38,7 @@ namespace SanntidWS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			
-			_sanntidView = new SanntidView();
+			_sanntidView = TinyIoCContainer.Current.Resolve<SanntidView>();
 			
 			// If you have defined a view, add it here:
 			window.AddSubview (_sanntidView.View);

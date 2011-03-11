@@ -34,6 +34,7 @@
     <MtouchDebug>False</MtouchDebug>
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
+    <DefineConstants>SILVERLIGHT;PocketPC;</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +57,16 @@
     <MtouchDebug>False</MtouchDebug>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <DefineConstants>SILVERLIGHT;PocketPC;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad Hoc Distribution|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Ad Hoc Distribution</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>False</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DefineConstants>SILVERLIGHT;PocketPC;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -216,7 +227,7 @@
     <Compile Include="TypeNameHandling.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\git\MonoTouch.Extensions\MonoTouch.Extensions\MonoTouch.Extensions.csproj">
+    <ProjectReference Include="..\..\..\..\git\MonoTouch.Extensions\MonoTouch.Extensions\MonoTouch.Extensions.csproj">
       <Project>{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}</Project>
       <Name>MonoTouch.Extensions</Name>
     </ProjectReference>

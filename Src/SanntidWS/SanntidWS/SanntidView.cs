@@ -5,25 +5,31 @@ using AtB;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Threading;
+using TinyIoC;
+using GpsTool;
 
 namespace SanntidWS
 {
 	public class SanntidView : UIViewController
 	{
 		private UIButton _loadDataButton;
-		private UIButton _loadRealTimeButton;
-		
-		private UITextField _stopName;
-		
+			
 		private UITextView _result;
 		
+		private UIActivityIndicatorView _activityIndicator;
+		
 		private Sanntid _sanntid;
+		private IGpsService _gpsService;
 		
 		private List<BusStop> _stops = new List<BusStop>();
 		
+		private bool _locationObtained;
+		
 		public SanntidView ()
 		{
-			_sanntid = new Sanntid();
+			_sanntid = TinyIoCContainer.Current.Resolve<Sanntid>(); 
+			_gpsService = TinyIoCContainer.Current.Resolve<IGpsService>();
 		}
 		
 		public override void ViewDidLoad ()
@@ -31,55 +37,59 @@ namespace SanntidWS
 			base.ViewDidLoad ();
 			
 			_loadDataButton = UIButton.FromType(UIButtonType.RoundedRect);
-			_loadDataButton.SetTitle("Load stops", UIControlState.Normal);
+			_loadDataButton.SetTitle("Hent sanntidsdata", UIControlState.Normal);
 			_loadDataButton.Frame = new RectangleF(10, 10, View.Bounds.Width - 20, 50);
-			
-			_stopName = new UITextField(new RectangleF(10,70, 100, 50));
-			_stopName.BorderStyle = UITextBorderStyle.RoundedRect;
-			
-			_loadRealTimeButton = UIButton.FromType(UIButtonType.RoundedRect);
-			_loadRealTimeButton.SetTitle("Load real-time data", UIControlState.Normal);
-			_loadRealTimeButton.Frame = new RectangleF(120, 70, View.Bounds.Width - 130, 50);
-			_loadRealTimeButton.Enabled = false;
-			
-			
-			_result = new UITextView(new RectangleF(0, 130, View.Bounds.Width, View.Bounds.Height - 110));
+				
+			_result = new UITextView(new RectangleF(10, 70, View.Bounds.Width - 20, View.Bounds.Height - 80));
 			_result.Font = UIFont.FromName("Arial", 14);
-
+			_result.Editable = false;
+			
+			_activityIndicator = new UIActivityIndicatorView(new RectangleF(View.Bounds.Width / 2 - 20, View.Bounds.Height / 2 - 20, 40, 40));	
+			_activityIndicator.AutoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
+			_activityIndicator.ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge;
+		
+			View.AddSubview(_activityIndicator);
 			View.AddSubview(_loadDataButton);
-			View.AddSubview(_loadRealTimeButton);
-			View.AddSubview(_stopName);
 			View.AddSubview(_result);
 			
 			View.BackgroundColor = UIColor.DarkGray;
 			
 			_loadDataButton.TouchUpInside += delegate(object sender, EventArgs e) {
-				_sanntid.GetBusStopList(BusStopsLoaded);
-			};
-			
-			_loadRealTimeButton.TouchUpInside += (s,e) =>
-			{
-				var selectedStop = _stops.FirstOrDefault(stop => stop.Name.Contains(_stopName.Text));
-				if (selectedStop != null)
+				_activityIndicator.StartAnimating();
+				if(!_stops.Any())
 				{
-					_sanntid.GetRealTimeData(selectedStop, stops => DisplayRealTimeData(selectedStop, stops));
+					_loadDataButton.SetTitle("Laster holdeplasser", UIControlState.Normal);
+					_loadDataButton.Enabled = false;
+					ThreadPool.QueueUserWorkItem(o => _sanntid.GetBusStopList(BusStopsLoaded));
+				}
+				else
+				{
+					GetLocation();
 				}
 			};
 			
-			_stopName.ShouldReturn = t => {
-				t.ResignFirstResponder();
-				return true;
-			};
 		}
 			
 		private void BusStopsLoaded(List<BusStop> busStops)
 		{
-			_stops.AddRange(busStops);			
-			_loadRealTimeButton.Enabled = true;
-			var stop = _stops.First();
+			_stops.Clear();
+			_stops.AddRange(busStops);	
+			GetLocation();
 			
-			InvokeOnMainThread(() => _stopName.Text = stop.Name);
+			InvokeOnMainThread(() =>
+           	{
+				_activityIndicator.StopAnimating();
+				_loadDataButton.Enabled = false;
+				_loadDataButton.SetTitle("Oppdater sanntidsdata", UIControlState.Normal);
+			});
 			
+		}
+		
+		private void GetLocation()
+		{
+			_locationObtained = false;
+			_gpsService.LocationChanged = LocationObtained;
+			_gpsService.Start();
 		}
 		
 		private void DisplayRealTimeData(BusStop stop, List<StopTime> stopTimes)
@@ -92,9 +102,57 @@ namespace SanntidWS
 			{
 				sb.AppendLine(stopTime.ToString());
 			}
-
-			InvokeOnMainThread(() => _result.Text = sb.ToString());
 			
+			if(!stopTimes.Any())
+			{
+				sb.AppendLine("Fant ingen data for holdeplassen.");
+			}
+
+			InvokeOnMainThread(() => 
+			{
+				_result.Text += Environment.NewLine + sb.ToString();
+				_activityIndicator.StopAnimating();
+				_loadDataButton.Enabled = true;
+			});
+			
+		}
+		
+		private void LocationObtained(LocationData location)
+		{
+			
+			if (!_locationObtained && location.Latitude > 1 && location.Longtitude > 1)
+			{
+				_locationObtained = true;
+				_gpsService.Stop();
+				
+				var currentCoordinate = new GeographicCoordinate(location.Latitude, location.Longtitude);
+				
+				var closestStop = _stops.OrderBy(s => RelativeDistance(s.Location, currentCoordinate)).First();
+
+				var text = "Fant posisjon: " + currentCoordinate + 
+					Environment.NewLine + "Nermeste holdeplass: " + closestStop.Name + " " + closestStop.Location + 
+					Environment.NewLine + "Laster sanntidsdata..." + Environment.NewLine;
+				
+				InvokeOnMainThread(() => _result.Text += text);
+				
+				ThreadPool.QueueUserWorkItem(o => _sanntid.GetRealTimeData(closestStop, stops => DisplayRealTimeData(closestStop, stops)));
+				
+				
+			}
+			
+		}		
+		
+		private double RelativeDistance(GeographicCoordinate c1, GeographicCoordinate c2)
+		{
+			if( c1 == null || c2 == null)
+			{
+				return double.MaxValue;
+			}
+		
+			var dlat = c1.Latitude - c2.Latitude;
+			var dlon = c1.Longtitude - c2.Longtitude;
+			
+			return Math.Sqrt(dlat * dlat + dlon * dlon);	
 		}
 				                        
 				                       
