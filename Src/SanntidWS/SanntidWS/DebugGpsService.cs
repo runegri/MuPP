@@ -19,7 +19,10 @@ namespace SanntidWS
 			if(_running)
 			{
 				var loc = new LocationData(63.425630295, 10.4458852325, 0, 1, DateTime.Now);
-				LocationChanged(loc);
+				if(LocationChanged != null)
+				{
+					LocationChanged(loc);
+				}
 			}
 		}
 		

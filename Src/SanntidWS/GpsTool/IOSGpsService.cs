@@ -13,6 +13,8 @@ namespace GpsTool
 		{
 			_locationManager = new CLLocationManager ();
 			_locationManager.Delegate = new GpsListenerDelegate (this);
+			_locationManager.DistanceFilter = 20;
+			_locationManager.DesiredAccuracy = 10;
 		}
 
 		public void Start ()
