@@ -10,5 +10,6 @@ namespace iPhoneUI
 		IEnumerable<StopInfo> GetAll();
 		IEnumerable<StopInfo> GetFavorites();
 		IEnumerable<StopInfo> GetMostRecent();
+		void AddMostRecent(StopInfo stopInfo);
 	}	
 }
