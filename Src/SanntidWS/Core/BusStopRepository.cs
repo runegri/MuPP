@@ -138,7 +138,7 @@ namespace AtB
 		{
 			lock(_conn)
 			{
-				return _conn.Table<BusStop>().ToList();			
+				return _conn.Table<BusStop>().OrderBy(s => s.Name).ToList();			
 			}
 		}
 
@@ -186,7 +186,14 @@ namespace AtB
 
 		public IList<BusStop> GetNearby ()
 		{
-			return GetNearbyStops(_location.Latitude, _location.Longtitude);
+			if(_location != null)
+			{
+				return GetNearbyStops(_location.Latitude, _location.Longtitude);
+			}
+			else
+			{
+				return new List<BusStop>();
+			}
 		}
 
 		public void AddMostRecent (BusStop busStop)

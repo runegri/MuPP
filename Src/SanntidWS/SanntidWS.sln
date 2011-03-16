@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanntidWS", "SanntidWS\SanntidWS.csproj", "{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json.net", "Json.net\Json.net.csproj", "{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GpsTool", "GpsTool\GpsTool.csproj", "{C5002037-18B0-4394-B517-83DF3593091A}"
@@ -52,16 +50,6 @@ Global
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhone.Build.0 = Release|iPhone
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Ad Hoc Distribution|iPhone.ActiveCfg = Ad Hoc Distribution|iPhone
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Ad Hoc Distribution|iPhone.Build.0 = Ad Hoc Distribution|iPhone
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Debug|iPhone.Build.0 = Debug|iPhone
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Release|iPhone.ActiveCfg = Release|iPhone
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Release|iPhone.Build.0 = Release|iPhone
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Ad Hoc Distribution|iPhone.ActiveCfg = Ad Hoc Distribution|iPhone
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Ad Hoc Distribution|iPhone.Build.0 = Ad Hoc Distribution|iPhone
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Debug|iPhone.ActiveCfg = Debug|iPhone
