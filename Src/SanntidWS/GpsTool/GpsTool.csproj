@@ -92,5 +92,6 @@
     <Compile Include="LocationData.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteConnectionExtensions.cs" />
+    <Compile Include="DebugGpsService.cs" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using AtB;
+using TinyIoC;
+using GpsTool;
 
 namespace iPhoneUI
 {
@@ -11,7 +14,15 @@ namespace iPhoneUI
 	{
 		static void Main (string[] args)
 		{
+			TinyIoCContainer.Current.Register<IBusStopRepository, BusStopRepository>();
+//#if DEBUG
+			//TinyIoCContainer.Current.Register<IGpsService, DebugGpsService>();
+//#else
+			TinyIoCContainer.Current.Register<IGpsService, IOSGpsService>();
+//#endif
 			UIApplication.Main(args, null, "AppDelegate");
+			//TinyIoCContainer.Current.AutoRegister();
+			//TinyIoC.TinyIoCContainer.Current.Register<FavoritesViewController>();
 		}
 	}
 		

@@ -59,6 +59,7 @@
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -92,6 +93,7 @@
     <Compile Include="Controller\FavoritesViewController.cs" />
     <Compile Include="Controller\MostRecentViewController.cs" />
     <Compile Include="SimpleBusStopTableViewSource.cs" />
+    <Compile Include="Controller\NearbyViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

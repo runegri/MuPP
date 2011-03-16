@@ -23,7 +23,7 @@ namespace iPhoneUI
 		
 		private BusStop _stopInfo;
 		
-		private IBusStopRepository _busStopRepository = new BusStopRepository();
+		private IBusStopRepository _busStopRepository = TinyIoC.TinyIoCContainer.Current.Resolve<IBusStopRepository>();
 		
 		public BusStopViewController (BusStop stopInfo)
 		{
@@ -51,7 +51,7 @@ namespace iPhoneUI
 			UIButton button = UIButton.FromType(UIButtonType.RoundedRect);
 			button.SetTitle("Legg til i favoritter", UIControlState.Normal);;
 			
-			button.Frame = new RectangleF(10, 120, 150, 50);
+			button.Frame = new RectangleF(10, 60, 150, 50);
 			
 			_view.Add(button);
 			
@@ -75,8 +75,26 @@ namespace iPhoneUI
 			// Add the table view as a subview
 			this.View.AddSubview (_view);
 			
+			_busStopRepository.GetRealTimeData(_stopInfo, RealTimeDataLoaded);	
 		}
-
+		
+		private void RealTimeDataLoaded(List<StopTime> stops) 
+		{
+			
+			InvokeOnMainThread(() => {
+				var y = 100;
+				foreach(var stop in stops)
+				{
+					UILabel label = new UILabel();
+					label.Text = stop.ToString();
+					label.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
+					label.Frame = new RectangleF(10,y, 300, 30);
+					_view.Add(label);
+					y += 35;
+				}}
+			);
+		}
+		
 		private string FormatText ()
 		{
 			StringBuilder sb = new StringBuilder ();

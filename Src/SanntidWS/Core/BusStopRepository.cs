@@ -8,6 +8,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using Wp7Sanntid.AtB;
+using GpsTool;
 
 namespace AtB
 {
@@ -23,7 +24,11 @@ namespace AtB
 		
 		private readonly SQLiteConnection _conn;
 		
-		public BusStopRepository()
+		private readonly IGpsService _gpsService;
+
+		private LocationData _location;
+		
+		public BusStopRepository(IGpsService gpsService)
 		{
 			try
 			{
@@ -31,7 +36,14 @@ namespace AtB
 			    //var dbPath = DbName;
 				_conn = new SQLiteConnection(dbPath);
 				_conn.EnsureTableExists<BusStop>();
-			    ThreadPool.QueueUserWorkItem(o => GetHandShake());
+				_gpsService = gpsService;
+				_gpsService.LocationChanged = LocationChanged;
+				_gpsService.Start();
+			    ThreadPool.QueueUserWorkItem(o => 
+                {
+					GetHandShake();
+					GetBusStopList();
+				});
 			}
 			catch(Exception ex)
 			{
@@ -76,37 +88,37 @@ namespace AtB
             get { return new WsAuthentication { user = UserName, password = Password }; }
         }
         
-        public void GetBusStopList(Action<List<BusStop>> callback)
+        public void GetBusStopList()
         {
-			var stopsInDb = GetBusStopsFromDb();
-			if (stopsInDb.Any())
+			lock(_conn)
 			{
-				callback(stopsInDb);
-			}
-			else
-			{
-			    var client = GetClient();
-				client.GetBusStopsListCompleted += (s,e) =>
-	            {
-					var busStopsFromJson = new BusStopListConverter().GetBusStopsList(e.Result);
-					AddStopsToDb(busStopsFromJson);
-					callback(busStopsFromJson);
-	            };
-				client.GetBusStopsListAsync(Authentication);
+				var stopsInDb = GetBusStopsFromDb();
+				if (!stopsInDb.Any())
+				{
+				    var client = GetClient();
+					client.GetBusStopsListCompleted += (s,e) =>
+		            {
+						var busStopsFromJson = new BusStopListConverter().GetBusStopsList(e.Result);
+						AddStopsToDb(busStopsFromJson);
+		            };
+					client.GetBusStopsListAsync(Authentication);
+				}
 			}
 		}
+		
 
-        public void GetNearbyStops(GeographicCoordinate location, Action<List<BusStop>> callback)
+        private List<BusStop> GetNearbyStops(double latitude, double longtitude)
         {
-            GetBusStopList(stops =>
-            {
-                var nearbyStops = stops
-					.OrderBy(s => RelativeDistance(s.Location, location))
-					.Take(NumNearbyStops)
-					.ToList();
-                callback(nearbyStops);
-            });
-        }
+			
+			var location = new GeographicCoordinate(latitude, longtitude);
+		
+            var nearbyStops = GetBusStopsFromDb()
+				.OrderBy(s => RelativeDistance(s.Location, location))
+				.Take(NumNearbyStops)
+				.ToList();
+        
+			return nearbyStops;
+		}
         
         private static double RelativeDistance(GeographicCoordinate c1, GeographicCoordinate c2)
         {
@@ -124,18 +136,18 @@ namespace AtB
 		
 		private List<BusStop> GetBusStopsFromDb()
 		{
-			return _conn.Table<BusStop>().ToList();			
+			lock(_conn)
+			{
+				return _conn.Table<BusStop>().ToList();			
+			}
 		}
 
         private void AddStopsToDb(IEnumerable<BusStop> busStops)
         {
-            ThreadPool.QueueUserWorkItem(o =>
-            {
-                _conn.BeginTransaction();
-                _conn.Table<BusStop>().ToList().ForEach(s => _conn.Delete(s));
-                _conn.InsertAll(busStops);
-                _conn.Commit();
-            });
+	        _conn.BeginTransaction();
+	        _conn.Table<BusStop>().ToList().ForEach(s => _conn.Delete(s));
+	        _conn.InsertAll(busStops);
+	        _conn.Commit();
         }
 
         public void GetRealTimeData(BusStop busStop, Action<List<StopTime>> callback)
@@ -149,41 +161,46 @@ namespace AtB
             };
             client.getUserRealTimeForecastAsync(Authentication, GetHandShake(), busStop.Id);
         }
+		
+		private void LocationChanged(LocationData location)
+		{
+			_location = location;
+		}
 
 		#region IBusStopRepository implementation
 		public IList<BusStop> GetAll ()
 		{
-			throw new NotImplementedException ();
+			return GetBusStopsFromDb();
 		}
 
 		public IList<BusStop> GetFavorites ()
 		{
-			throw new NotImplementedException ();
+			return new List<BusStop>();
 		}
-
+		
+		
 		public IList<BusStop> GetMostRecent ()
 		{
-			throw new NotImplementedException ();
+			return new List<BusStop>();
 		}
 
 		public IList<BusStop> GetNearby ()
 		{
-			throw new NotImplementedException ();
+			return GetNearbyStops(_location.Latitude, _location.Longtitude);
 		}
 
 		public void AddMostRecent (BusStop busStop)
 		{
-			throw new NotImplementedException ();
+			
 		}
 
 		public void AddFavorite (BusStop busStop)
 		{
-			throw new NotImplementedException ();
 		}
 
 		public void RemoveFavorite (BusStop busStop)
 		{
-			throw new NotImplementedException ();
+			
 		}
 		#endregion
 	
