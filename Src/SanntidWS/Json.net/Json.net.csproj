@@ -246,4 +246,10 @@
     <Compile Include="Required.cs" />
     <Compile Include="TypeNameHandling.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoTouch.Extensions\MonoTouch.Extensions\MonoTouch.Extensions.csproj">
+      <Project>{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}</Project>
+      <Name>MonoTouch.Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
