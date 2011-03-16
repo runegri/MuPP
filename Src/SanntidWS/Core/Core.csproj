@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C5002037-18B0-4394-B517-83DF3593091A}</ProjectGuid>
+    <ProjectGuid>{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>GpsTool</RootNamespace>
-    <AssemblyName>GpsTool</AssemblyName>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -21,13 +21,13 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <MtouchUseLlvm>false</MtouchUseLlvm>
-    <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchUseThumb>false</MtouchUseThumb>
+    <ConsolePause>false</ConsolePause>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -35,13 +35,13 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchDebug>False</MtouchDebug>
-    <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <MtouchUseLlvm>false</MtouchUseLlvm>
-    <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchDebug>False</MtouchDebug>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,13 +51,13 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchDebug>True</MtouchDebug>
-    <MtouchUseLlvm>false</MtouchUseLlvm>
-    <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchDebug>True</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -65,19 +65,22 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MtouchUseSGen>false</MtouchUseSGen>
     <MtouchDebug>False</MtouchDebug>
+    <MtouchUseThumb>false</MtouchUseThumb>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchUseThumb>false</MtouchUseThumb>
-    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -86,11 +89,29 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="IGpsService.cs" />
-    <Compile Include="IOSGpsService.cs" />
-    <Compile Include="TinyIoC.cs" />
-    <Compile Include="LocationData.cs" />
-    <Compile Include="SQLite.cs" />
-    <Compile Include="SQLiteConnectionExtensions.cs" />
+    <Compile Include="BusStop.cs" />
+    <Compile Include="BusStopListConverter.cs" />
+    <Compile Include="CoordinateConverter.cs" />
+    <Compile Include="DecimalConverter.cs" />
+    <Compile Include="IBusStopRepository.cs" />
+    <Compile Include="JsonConverterBase.cs" />
+    <Compile Include="SanntidServiceReference.cs" />
+    <Compile Include="StopTime.cs" />
+    <Compile Include="StopTimeConverter.cs" />
+    <Compile Include="BusStopRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GpsTool\GpsTool.csproj">
+      <Project>{C5002037-18B0-4394-B517-83DF3593091A}</Project>
+      <Name>GpsTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Json.net\Json.net.csproj">
+      <Project>{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}</Project>
+      <Name>Json.net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\git\MonoTouch.Extensions\MonoTouch.Extensions\MonoTouch.Extensions.csproj">
+      <Project>{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}</Project>
+      <Name>MonoTouch.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

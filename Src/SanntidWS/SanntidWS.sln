@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTouch.Extensions", "..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GpsTool", "GpsTool\GpsTool.csproj", "{C5002037-18B0-4394-B517-83DF3593091A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iPhoneUI", "iPhoneUI\iPhoneUI.csproj", "{28212E69-B40A-44A9-954A-3F64554AC224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -28,6 +32,26 @@ Global
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhone.Build.0 = Release|iPhone
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Ad Hoc Distribution|iPhone.ActiveCfg = Debug|iPhone
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Ad Hoc Distribution|iPhone.Build.0 = Debug|iPhone
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Debug|iPhone.Build.0 = Debug|iPhone
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Release|iPhone.ActiveCfg = Release|iPhone
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Release|iPhone.Build.0 = Release|iPhone
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{28212E69-B40A-44A9-954A-3F64554AC224}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Ad Hoc Distribution|iPhone.ActiveCfg = Debug|iPhone
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Ad Hoc Distribution|iPhone.Build.0 = Debug|iPhone
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Debug|iPhone.Build.0 = Debug|iPhone
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhone.ActiveCfg = Release|iPhone
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhone.Build.0 = Release|iPhone
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Ad Hoc Distribution|iPhone.ActiveCfg = Ad Hoc Distribution|iPhone
 		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Ad Hoc Distribution|iPhone.Build.0 = Ad Hoc Distribution|iPhone
 		{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}.Debug|iPhone.ActiveCfg = Debug|iPhone
@@ -60,7 +84,7 @@ Global
 		{C5002037-18B0-4394-B517-83DF3593091A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = SanntidWS\SanntidWS.csproj
+		StartupItem = iPhoneUI\iPhoneUI.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None

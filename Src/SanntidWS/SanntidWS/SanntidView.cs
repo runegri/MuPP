@@ -21,12 +21,14 @@ namespace SanntidWS
 		
 		private UIActivityIndicatorView _activityIndicator;
 		
-		private Sanntid _sanntid;
+		private Realtime _sanntid;
 		private IGpsService _gpsService;
+		
+		private LocationData _location;
 		
 		public SanntidView ()
 		{
-			_sanntid = TinyIoCContainer.Current.Resolve<Sanntid>(); 
+			_sanntid = TinyIoCContainer.Current.Resolve<Realtime>(); 
 			_gpsService = TinyIoCContainer.Current.Resolve<IGpsService>();
 		}
 		
@@ -53,28 +55,32 @@ namespace SanntidWS
 			View.BackgroundColor = UIColor.DarkGray;
 			
 			_loadDataButton.TouchUpInside += delegate(object sender, EventArgs e) {
-				_activityIndicator.StartAnimating();
-				_result.Text = "Jobber..." + Environment.NewLine + Environment.NewLine;
-				ThreadPool.QueueUserWorkItem(o => _sanntid.GetBusStopList(BusStopsLoaded));	
+				if(_location != null)
+				{
+					_activityIndicator.StartAnimating();
+					_result.Text = "Jobber..." + Environment.NewLine + Environment.NewLine;
+					var coordinate = new GeographicCoordinate(_location.Latitude, _location.Longtitude);
+					ThreadPool.QueueUserWorkItem(o => _sanntid.GetNearbyStops(coordinate, BusStopsLoaded));	
+				}
 			};
-			
-		}
-			
-		private void BusStopsLoaded(List<BusStop> busStops)
-		{
-			GetLocation(busStops);
-			
-			InvokeOnMainThread(() =>
-           	{
-				_activityIndicator.StopAnimating();
-		   	});
-			
-		}
-		
-		private void GetLocation(List<BusStop> busStops)
-		{
-			_gpsService.LocationChanged = location => LocationObtained(location, busStops);
+
+			_gpsService.LocationChanged = location => _location = location; 
 			_gpsService.Start();
+			
+		}
+			
+		private void BusStopsLoaded(List<BusStop> closestStops)
+		{
+			foreach(var closestStop in closestStops)
+			{
+				GetRealTimeDataForBusStop(closestStop);
+			}
+		}
+
+		private void GetRealTimeDataForBusStop(BusStop busStop)
+		{
+			ThreadPool.QueueUserWorkItem(o => 
+                 _sanntid.GetRealTimeData(busStop, stops => DisplayRealTimeData(busStop, stops)));
 		}
 		
 		private void DisplayRealTimeData(BusStop stop, List<StopTime> stopTimes)
@@ -99,46 +105,7 @@ namespace SanntidWS
 			});
 			
 		}
-		
-		private void LocationObtained(LocationData location, List<BusStop> busStops)
-		{
-			
-			if (location.Latitude > 1 && location.Longtitude > 1)
-			{
-				
-				_gpsService.LocationChanged = null;
-				
-				var currentCoordinate = new GeographicCoordinate(location.Latitude, location.Longtitude);
-					
-				var closestStops = busStops.OrderBy(s => RelativeDistance(s.Location, currentCoordinate)).Take(5).ToList();
-
-				foreach(var closestStop in closestStops)
-				{
-					GetRealTimeDataForBusStop(closestStop);
-				}	
-			}
-			
-		}		
-		
-		private void GetRealTimeDataForBusStop(BusStop busStop)
-		{
-			ThreadPool.QueueUserWorkItem(o => _sanntid.GetRealTimeData(busStop, stops => DisplayRealTimeData(busStop, stops)));
-		}
-		
-		private double RelativeDistance(GeographicCoordinate c1, GeographicCoordinate c2)
-		{
-			if( c1 == null || c2 == null)
-			{
-				return double.MaxValue;
-			}
-		
-			var dlat = c1.Latitude - c2.Latitude;
-			var dlon = c1.Longtitude - c2.Longtitude;
-			
-			return Math.Sqrt(dlat * dlat + dlon * dlon);	
-		}
-				                        
-				                       
+			                        		                       
 	}
 }
 

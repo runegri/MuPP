@@ -7,7 +7,7 @@ using MonoTouch.UIKit;
 using MonoTouch.CoreLocation;
 using MonoTouch.MapKit;
 using System.Threading;
-using Core;
+using AtB;
 namespace iPhoneUI
 {
 	public class AllStopsViewController : UIViewController
@@ -18,12 +18,6 @@ namespace iPhoneUI
 		public AllStopsViewController(IBusStopRepository busStopRepository)
 		{
 			_busStopRepository = busStopRepository;
-		}
-		
-		
-		public AllStopsViewController() : this(new BusStopRepository())
-		{
-			
 		}
 		
 		public override void ViewDidLoad ()

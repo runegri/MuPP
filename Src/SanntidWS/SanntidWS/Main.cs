@@ -26,7 +26,7 @@ namespace SanntidWS
 			TinyIoCContainer.Current.Register<IGpsService, IOSGpsService>();
 #endif
 			TinyIoCContainer.Current.Register<SanntidView>();
-			TinyIoCContainer.Current.Register<Sanntid>();
+			TinyIoCContainer.Current.Register<Realtime>();
 		}
 	}
 

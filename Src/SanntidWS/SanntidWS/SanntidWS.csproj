@@ -31,6 +31,10 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <MtouchI18n />
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -41,6 +45,10 @@
     <MtouchDebug>False</MtouchDebug>
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +64,10 @@
     <MtouchI18n />
     <MtouchExtraArgs>-v -v -v</MtouchExtraArgs>
     <MtouchLink>None</MtouchLink>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -67,6 +79,10 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchI18n />
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad Hoc Distribution|iPhone' ">
     <DebugType>none</DebugType>
@@ -76,6 +92,10 @@
     <MtouchDebug>False</MtouchDebug>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignProvision>8FF2BBC4-961C-4DDA-8FB4-F5B24C8F9013</CodesignProvision>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -95,17 +115,18 @@
       <DependentUpon>MainWindow.xib</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="BusStopListConverter.cs" />
-    <Compile Include="CoordinateConverter.cs" />
-    <Compile Include="DecimalConverter.cs" />
-    <Compile Include="JsonConverterBase.cs" />
-    <Compile Include="StopTime.cs" />
-    <Compile Include="StopTimeConverter.cs" />
     <Compile Include="SanntidView.cs" />
-    <Compile Include="AtB\UserServices.cs" />
     <Compile Include="DebugGpsService.cs" />
-    <Compile Include="AtB\Sanntid.cs" />
     <Compile Include="AtB\BusStop.cs" />
+    <Compile Include="AtB\StopTimeConverter.cs" />
+    <Compile Include="AtB\StopTime.cs" />
+    <Compile Include="AtB\BusStopListConverter.cs" />
+    <Compile Include="AtB\CoordinateConverter.cs" />
+    <Compile Include="AtB\DecimalConverter.cs" />
+    <Compile Include="AtB\JsonConverterBase.cs" />
+    <Compile Include="AtB\SanntidServiceReference.cs" />
+    <Compile Include="AtB\Realtime.cs" />
+    <Compile Include="AtB\IBusStopRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -131,6 +152,10 @@
     <ProjectReference Include="..\GpsTool\GpsTool.csproj">
       <Project>{C5002037-18B0-4394-B517-83DF3593091A}</Project>
       <Name>GpsTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\git\MonoTouch.Extensions\MonoTouch.Extensions\MonoTouch.Extensions.csproj">
+      <Project>{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}</Project>
+      <Name>MonoTouch.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

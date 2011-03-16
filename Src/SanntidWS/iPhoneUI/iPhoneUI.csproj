@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C5002037-18B0-4394-B517-83DF3593091A}</ProjectGuid>
+    <ProjectGuid>{28212E69-B40A-44A9-954A-3F64554AC224}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <RootNamespace>GpsTool</RootNamespace>
-    <AssemblyName>GpsTool</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>iPhoneUI</RootNamespace>
+    <AssemblyName>iPhoneUI</AssemblyName>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -24,6 +24,7 @@
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
+    <MtouchI18n />
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchUseThumb>false</MtouchUseThumb>
@@ -79,6 +80,19 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="Controller\AllStopsViewController.cs" />
+    <Compile Include="BusStopTableViewSource.cs" />
+    <Compile Include="TabBarController.cs" />
+    <Compile Include="BusStopViewController.cs" />
+    <Compile Include="Controller\FavoritesViewController.cs" />
+    <Compile Include="Controller\MostRecentViewController.cs" />
+    <Compile Include="SimpleBusStopTableViewSource.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
@@ -86,11 +100,16 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="IGpsService.cs" />
-    <Compile Include="IOSGpsService.cs" />
-    <Compile Include="TinyIoC.cs" />
-    <Compile Include="LocationData.cs" />
-    <Compile Include="SQLite.cs" />
-    <Compile Include="SQLiteConnectionExtensions.cs" />
+    <Folder Include="Controller\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GpsTool\GpsTool.csproj">
+      <Project>{C5002037-18B0-4394-B517-83DF3593091A}</Project>
+      <Name>GpsTool</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
