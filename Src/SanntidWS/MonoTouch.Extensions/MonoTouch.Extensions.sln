@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTouch.Extensions", "MonoTouch.Extensions\MonoTouch.Extensions.csproj", "{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{545FCC1A-15E3-4D13-A437-51CFC9880798}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBoundUITableViewSource", "Samples\DataBoundUITableViewSource\DataBoundUITableViewSource.csproj", "{6B53B869-AEE0-4693-9D17-A1C62E72737D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad Hoc Distribution|iPhone = Ad Hoc Distribution|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Ad Hoc Distribution|iPhone.ActiveCfg = Ad Hoc Distribution|iPhone
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Ad Hoc Distribution|iPhone.Build.0 = Ad Hoc Distribution|iPhone
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Debug|iPhone.Build.0 = Debug|iPhone
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhone.ActiveCfg = Release|iPhone
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhone.Build.0 = Release|iPhone
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Ad Hoc Distribution|iPhone.ActiveCfg = Debug|iPhone
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Ad Hoc Distribution|iPhone.Build.0 = Debug|iPhone
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Debug|iPhone.Build.0 = Debug|iPhone
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Release|iPhone.Build.0 = Release|iPhone
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6B53B869-AEE0-4693-9D17-A1C62E72737D} = {545FCC1A-15E3-4D13-A437-51CFC9880798}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Samples\DataBoundUITableViewSource\DataBoundUITableViewSource.csproj
+	EndGlobalSection
+EndGlobal

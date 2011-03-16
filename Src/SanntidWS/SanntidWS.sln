@@ -5,13 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanntidWS", "SanntidWS\Sann
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json.net", "Json.net\Json.net.csproj", "{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTouch.Extensions", "..\..\..\git\MonoTouch.Extensions\MonoTouch.Extensions\MonoTouch.Extensions.csproj", "{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GpsTool", "GpsTool\GpsTool.csproj", "{C5002037-18B0-4394-B517-83DF3593091A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iPhoneUI", "iPhoneUI\iPhoneUI.csproj", "{28212E69-B40A-44A9-954A-3F64554AC224}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTouch.Extensions", "MonoTouch.Extensions\MonoTouch.Extensions\MonoTouch.Extensions.csproj", "{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

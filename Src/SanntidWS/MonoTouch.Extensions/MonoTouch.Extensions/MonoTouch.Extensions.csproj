@@ -1,36 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{90205FF2-6A80-449E-9AF4-6E1A58A5AD1B}</ProjectGuid>
+    <ProjectGuid>{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>SanntidWS</RootNamespace>
-    <MainNibFile>MainWindow.xib</MainNibFile>
-    <AssemblyName>SanntidWS</AssemblyName>
-    <MtouchMinimumOS>3.0</MtouchMinimumOS>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MonoTouch.Extensions</RootNamespace>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <BundleIcon>Images\buss 57.png</BundleIcon>
-    <BundleIconHigh>Images\buss 114.png</BundleIconHigh>
-    <BundleIdentifier>AtB</BundleIdentifier>
-    <BundleDisplayName>AtB Sanntid</BundleDisplayName>
-    <BundleVersion>1.0.0</BundleVersion>
+    <MtouchMinimumOS>3.0</MtouchMinimumOS>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>DEBUG;SIMULATOR;</DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchI18n />
+    <AssemblyName>MonoTouch.Extensions</AssemblyName>
+    <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchUseThumb>false</MtouchUseThumb>
@@ -43,8 +36,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>False</MtouchDebug>
-    <ConsolePause>false</ConsolePause>
-    <MtouchLink>None</MtouchLink>
+    <AssemblyName>MonoTouch.Extensions</AssemblyName>
+    <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchUseThumb>false</MtouchUseThumb>
@@ -58,12 +51,10 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchI18n />
-    <MtouchExtraArgs>-v -v -v</MtouchExtraArgs>
-    <MtouchLink>None</MtouchLink>
+    <AssemblyName>MonoTouch.Extensions</AssemblyName>
+    <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchUseThumb>false</MtouchUseThumb>
@@ -75,10 +66,10 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchDebug>False</MtouchDebug>
-    <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchI18n />
+    <MtouchDebug>False</MtouchDebug>
+    <AssemblyName>MonoTouch.Extensions</AssemblyName>
+    <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchUseThumb>false</MtouchUseThumb>
@@ -90,8 +81,8 @@
     <OutputPath>bin\iPhone\Ad Hoc Distribution</OutputPath>
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>False</MtouchDebug>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignProvision>8FF2BBC4-961C-4DDA-8FB4-F5B24C8F9013</CodesignProvision>
+    <AssemblyName>MonoTouchExtensions</AssemblyName>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchUseThumb>false</MtouchUseThumb>
@@ -102,70 +93,32 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Info.plist" />
-    <None Include="Web References\AtB\userservices.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MainWindow.xib.designer.cs">
-      <DependentUpon>MainWindow.xib</DependentUpon>
-    </Compile>
-    <Compile Include="Main.cs" />
-    <Compile Include="SanntidView.cs" />
-    <Compile Include="DebugGpsService.cs" />
-    <Compile Include="AtB\BusStop.cs" />
-    <Compile Include="AtB\StopTimeConverter.cs" />
-    <Compile Include="AtB\StopTime.cs" />
-    <Compile Include="AtB\BusStopListConverter.cs" />
-    <Compile Include="AtB\CoordinateConverter.cs" />
-    <Compile Include="AtB\DecimalConverter.cs" />
-    <Compile Include="AtB\JsonConverterBase.cs" />
-    <Compile Include="AtB\SanntidServiceReference.cs" />
-    <Compile Include="AtB\Realtime.cs" />
-    <Compile Include="AtB\IBusStopRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MainWindow.xib" />
+    <Compile Include="System.Collections.ObjectModel\ObservableCollection.cs" />
+    <Compile Include="System.Collections.Specialized\INotifyCollectionChanged.cs" />
+    <Compile Include="System.Collections.Specialized\NotifyCollectionChangedEventHandler.cs" />
+    <Compile Include="System.Collections.Specialized\NotifyCollectionChangedEventArgs.cs" />
+    <Compile Include="System.Collections.Specialized\NotifyCollectionChangedAction.cs" />
+    <Compile Include="Controls\IUITableViewCellInfo.cs" />
+    <Compile Include="Controls\DataBoundUITableViewSource.cs" />
+    <Compile Include="Controls\IUITableViewCellContext.cs" />
+    <Compile Include="Controls\TableViewCellBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
-      <Properties InternalTargetFrameworkVersion="IPhone" />
+      <Properties InternalTargetFrameworkVersion="IPhone">
+        <Policies>
+          <TextStylePolicy FileWidth="120" RemoveTrailingWhitespace="True" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+        </Policies>
+      </Properties>
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\R1615.HPL" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Json.net\Json.net.csproj">
-      <Project>{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}</Project>
-      <Name>Json.net</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GpsTool\GpsTool.csproj">
-      <Project>{C5002037-18B0-4394-B517-83DF3593091A}</Project>
-      <Name>GpsTool</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://195.0.188.74/InfoTransit/userservices.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\AtB</RelPath>
-      <UpdateFromURL>http://195.0.188.74/InfoTransit/userservices.asmx</UpdateFromURL>
-    </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\buss 114.png" />
-    <Content Include="Images\buss 57.png" />
+    <Folder Include="System.Collections.ObjectModel\" />
+    <Folder Include="Controls\" />
+    <Folder Include="System.Collections.Specialized\" />
   </ItemGroup>
 </Project>
