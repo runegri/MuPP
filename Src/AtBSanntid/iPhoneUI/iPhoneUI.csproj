@@ -75,6 +75,7 @@
     <Compile Include="BusStopViewController.cs" />
     <Compile Include="Controller\FavoritesViewController.cs" />
     <Compile Include="Controller\MostRecentViewController.cs" />
+    <Compile Include="SimpleBusStopTableViewSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

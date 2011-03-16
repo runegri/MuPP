@@ -8,8 +8,11 @@ namespace iPhoneUI
 	public interface IBusStopRepository
 	{
 		IEnumerable<StopInfo> GetAll();
-		IEnumerable<StopInfo> GetFavorites();
-		IEnumerable<StopInfo> GetMostRecent();
+		
+		IList<StopInfo> GetFavorites();
+		void AddFavorite(StopInfo stopInfo);
+		
+		IList<StopInfo> GetMostRecent();
 		void AddMostRecent(StopInfo stopInfo);
 	}	
 }

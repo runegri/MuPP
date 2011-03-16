@@ -23,16 +23,18 @@ namespace iPhoneUI
 		public override void ViewDidLoad ()
 		{	
 			this.Title = "Sist brukte";
-			_tableView = new UITableView(View.Bounds, UITableViewStyle.Grouped);
+			_tableView = new UITableView(View.Bounds, UITableViewStyle.Plain);
 						
-			_tableView.Source = new BusStopTableViewSource(this, _busStopRepository.GetMostRecent());
+			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository.GetMostRecent());
 			
 			View.AddSubview(_tableView);
 		}
+		
+		
+		public override void ViewWillAppear (bool animated)
+		{
+			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository.GetMostRecent());			
+		}
 	}
-	
-
-	
-
 }
 

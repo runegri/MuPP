@@ -20,9 +20,12 @@ namespace iPhoneUI
 		
 		private UIViewController _controller;
 		
+		
+		
 		public BusStopTableViewSource (UIViewController controller,  IEnumerable<StopInfo> busStops)
 		{
 			_controller = controller;
+			
 			_sectionTitles = (from c in busStops
 				select c.StopName.Substring (0, 1)).Distinct ().ToList ();
 			
@@ -73,7 +76,8 @@ namespace iPhoneUI
 			
 			return cell;
 		}
-
+		
+		
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			StopInfo stopInfo = GetStopInfo(indexPath);
@@ -83,6 +87,15 @@ namespace iPhoneUI
 			
 			// Prevent the blue 'selection indicator' remaining.
 			tableView.DeselectRow (indexPath, true);
+		}
+		
+		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+		{
+			if(editingStyle == UITableViewCellEditingStyle.Delete)
+			{
+				_sectionElements[indexPath.Section].Remove(GetStopInfo(indexPath));
+				tableView.DeleteRows(new [] {indexPath}, UITableViewRowAnimation.Fade);
+			}
 		}
 		
 		private static UITableViewCell CreateOrReuseCell(UITableView tableView)

@@ -1,5 +1,3 @@
-Obj
-Bin
 *.userprefs
 *.pidb
-*.orig
+bin

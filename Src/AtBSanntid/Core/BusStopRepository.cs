@@ -1,5 +1,5 @@
-
 using System;
+using System.Linq;
 using MonoTouch.UIKit;
 using Core;
 using System.Collections.Generic;
@@ -7,7 +7,8 @@ namespace iPhoneUI
 {
 	public class BusStopRepository : IBusStopRepository
 	{
-		private List<StopInfo> _mostRecent = new List<StopInfo>();
+		private static List<StopInfo> _mostRecent = new List<StopInfo>();
+		private static List<StopInfo> _favorites = new List<StopInfo>();
 		
 		public IEnumerable<StopInfo> GetAll()
 		{
@@ -15,12 +16,17 @@ namespace iPhoneUI
 			return vm.Stops;
 		}
 
-		public IEnumerable<StopInfo> GetFavorites()
+		public IList<StopInfo> GetFavorites()
 		{
-			return new List<StopInfo> {new StopInfo("", "Fjøslia","","")};
+			return _favorites.OrderBy(f => f.StopName).ToList();
 		}
 		
-		public IEnumerable<StopInfo> GetMostRecent()
+		public void AddFavorite(StopInfo stopInfo) 
+		{
+			_favorites.Add(stopInfo);
+		}
+		
+		public IList<StopInfo> GetMostRecent()
 		{
 			return _mostRecent;
 		}
