@@ -110,6 +110,7 @@
     <Folder Include="Controller\" />
     <Folder Include="Images\" />
     <Folder Include="TableData\" />
+    <Folder Include="Db\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -124,5 +125,6 @@
   <ItemGroup>
     <Content Include="Images\buss 114.png" />
     <Content Include="Images\buss 57.png" />
+    <Content Include="Db\sanntid.db" />
   </ItemGroup>
 </Project>

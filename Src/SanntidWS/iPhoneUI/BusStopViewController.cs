@@ -10,6 +10,8 @@ using System.Threading;
 using System.Drawing;
 using System.Text;
 using AtB;
+using MonoTouch.MessageUI;
+using System.IO;
 
 namespace iPhoneUI
 {
@@ -24,7 +26,9 @@ namespace iPhoneUI
 		private BusStop _stopInfo;
 
 		private IBusStopRepository _busStopRepository = TinyIoC.TinyIoCContainer.Current.Resolve<IBusStopRepository> ();
-
+		
+	//	private MFMailComposeViewController _mail;
+		
 		public BusStopViewController (BusStop stopInfo)
 		{
 			_stopInfo = stopInfo;
@@ -59,7 +63,37 @@ namespace iPhoneUI
 			_view.SizeToFit ();
 			
 			button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };
+			/*
+			var b2 = UIButton.FromType(UIButtonType.RoundedRect);
+			b2.SetTitle("Send", UIControlState.Normal);
+			b2.TouchUpInside += delegate {
+				_mail = new MFMailComposeViewController();
+				_mail.SetMessageBody("vedleggene her", false);
 			
+				((BusStopRepository)_busStopRepository).Reset();
+				
+				var dbPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), "Sanntid.db");
+				var data = File.ReadAllBytes(dbPath);
+
+				var nsData = NSData.FromArray(data);
+				
+				_mail.AddAttachmentData(nsData, "image/png", "sanntid.png");
+				
+				_mail.Finished += delegate(object sender, MFComposeResultEventArgs e) {
+					e.Controller.DismissModalViewControllerAnimated(true);
+				};
+				
+				_view.Add(_mail.View);
+				PresentModalViewController(_mail, true);
+				
+				
+			};
+			
+			
+			b2.Frame = new RectangleF(50,250,100,50);
+			
+			_view.Add(b2);
+			*/
 			webView = new UIWebView { ScalesPageToFit = false };
 			
 			

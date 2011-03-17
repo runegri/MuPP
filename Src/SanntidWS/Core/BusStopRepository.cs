@@ -23,7 +23,7 @@ namespace AtB
 		private const int NumNearbyStops = 8;
 		private const int MostRecentCount = 8;
 		
-		private readonly SQLiteConnection _conn;
+		private SQLiteConnection _conn;
 		
 		private readonly IGpsService _gpsService;
 
@@ -33,17 +33,14 @@ namespace AtB
 		{
 			try
 			{
-				var dbPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), DbName);
-			    //var dbPath = DbName;
-				_conn = new SQLiteConnection(dbPath);
-				_conn.CreateTable<BusStop>();
+				CreateDatabaseFile();
 				_gpsService = gpsService;
 				_gpsService.LocationChanged = LocationChanged;
 				_gpsService.Start();
 			    ThreadPool.QueueUserWorkItem(o => 
                 {
 					GetHandShake();
-					GetBusStopList();
+					//GetBusStopList();
 				});
 			}
 			catch(Exception ex)
@@ -51,6 +48,34 @@ namespace AtB
 				Debug.WriteLine(ex.ToString());
 				throw;
 			}
+		}
+		
+		private void CreateDatabaseFile()
+		{
+			var dbPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), DbName);
+			//var dbPath = DbName;
+			var sourceFile = "Db/sanntid.db";
+			
+			
+			if(!File.Exists(dbPath))
+			{
+				File.Copy(sourceFile, dbPath);
+			}
+			
+			_conn = new SQLiteConnection(dbPath);
+			_conn.CreateTable<BusStop>();	
+	
+		}
+		
+		public void Reset()
+		{
+					
+			_conn.Table<BusStop>().ToList().ForEach(b => {
+				b.LastAccess = DateTime.MinValue;
+				b.IsFavorite = false;
+				_conn.Update(b);
+			});
+			
 		}
 		
         private  object _handShakeLock = new object();

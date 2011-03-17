@@ -114,4 +114,7 @@
       <Name>MonoTouch.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Db\" />
+  </ItemGroup>
 </Project>
