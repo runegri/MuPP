@@ -20,8 +20,8 @@ namespace AtB
         private const string Password = "pass";
         private const string UserId = "runegri";
 		private const string DbName = "Sanntid.db";
-		private const int NumNearbyStops = 5;
-		private const int MostRecentCount = 10;
+		private const int NumNearbyStops = 8;
+		private const int MostRecentCount = 8;
 		
 		private readonly SQLiteConnection _conn;
 		
