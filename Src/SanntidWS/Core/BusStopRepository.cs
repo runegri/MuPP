@@ -21,6 +21,7 @@ namespace AtB
         private const string UserId = "runegri";
 		private const string DbName = "Sanntid.db";
 		private const int NumNearbyStops = 5;
+		private const int MostRecentCount = 10;
 		
 		private readonly SQLiteConnection _conn;
 		
@@ -35,7 +36,7 @@ namespace AtB
 				var dbPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), DbName);
 			    //var dbPath = DbName;
 				_conn = new SQLiteConnection(dbPath);
-				_conn.EnsureTableExists<BusStop>();
+				_conn.CreateTable<BusStop>();
 				_gpsService = gpsService;
 				_gpsService.LocationChanged = LocationChanged;
 				_gpsService.Start();
@@ -175,13 +176,16 @@ namespace AtB
 
 		public IList<BusStop> GetFavorites ()
 		{
-			return new List<BusStop>();
+			return GetBusStopsFromDb().Where(stop => stop.IsFavorite).ToList();
 		}
-		
 		
 		public IList<BusStop> GetMostRecent ()
 		{
-			return new List<BusStop>();
+			return GetBusStopsFromDb()
+				.Where(stop => stop.LastAccess > DateTime.MinValue)
+				.OrderBy(stop => stop.LastAccess)
+				.Take(MostRecentCount)
+				.ToList();
 		}
 
 		public IList<BusStop> GetNearby ()
@@ -198,17 +202,22 @@ namespace AtB
 
 		public void AddMostRecent (BusStop busStop)
 		{
-			
+			busStop.LastAccess = DateTime.Now;
+			_conn.Update(busStop);			
 		}
 
 		public void AddFavorite (BusStop busStop)
 		{
+			busStop.IsFavorite = true;
+			_conn.Update(busStop);
 		}
 
 		public void RemoveFavorite (BusStop busStop)
 		{
-			
+			busStop.IsFavorite = false;
+			_conn.Update(busStop);
 		}
+		
 		#endregion
 	
 	}

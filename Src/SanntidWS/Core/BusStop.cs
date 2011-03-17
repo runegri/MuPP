@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using MonoTouch.Foundation;
+using System;
 namespace AtB
 {
 	
@@ -8,15 +9,15 @@ namespace AtB
     {
 		
 		[PrimaryKey, Indexed]
-        public string Id { get; private set; }
+        public string Id { get; set; }
 
-		public string StopCode { get; private set; }
+		public string StopCode { get; set; }
 		
 		[Indexed]
-		public string Name { get; private set; }
+		public string Name { get; set; }
         
 		[Ignore]
-		public GeographicCoordinate Location { get; private set; }
+		public GeographicCoordinate Location { get; set; }
 		
 		public double Latitude 
 		{
@@ -30,9 +31,16 @@ namespace AtB
 			set { Location.Longtitude = value; }
 		}
 		
+		[Indexed]
+		public DateTime LastAccess { get; set; }
+		
+		[Indexed]
+		public bool IsFavorite { get; set; }
+		
 		public BusStop()
 		{
 			Location = new GeographicCoordinate(0,0);
+			LastAccess = DateTime.MinValue;
 		}
 		
         public BusStop(string id, string stopCode, string name, GeographicCoordinate location)
@@ -41,6 +49,7 @@ namespace AtB
             StopCode = stopCode;
             Name = name;
             Location = location;
+			LastAccess = DateTime.MinValue;
         }
 
         public override string ToString()

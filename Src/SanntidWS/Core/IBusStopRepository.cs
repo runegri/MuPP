@@ -14,7 +14,7 @@ namespace AtB
 		void AddMostRecent(BusStop busStop);
 		void AddFavorite(BusStop busStop);
 		void RemoveFavorite(BusStop busStop);
-		
+	
 		void GetRealTimeData(BusStop busStop, Action<List<StopTime>> callback);
 	}	
 }
