@@ -20,11 +20,12 @@ namespace AtB
                 var id = GetTokenValue(stop.SelectToken("cinFermata"));
                 var stopCode = GetTokenValue(stop.SelectToken("codAzNodo"));
                 var name = GetTokenValue(stop.SelectToken("descrizione"));
-                var lat = Convert.ToDouble(GetTokenValue(stop.SelectToken("lat")));
+				var lat = Convert.ToDouble(GetTokenValue(stop.SelectToken("lat")));
                 var lon = Convert.ToDouble(GetTokenValue(stop.SelectToken("lon")));
 
                 name = name.Replace(stopCode, "").Replace("()", "").Trim();
-
+				name = name + " " + DirectionFromStopCode(stopCode);
+				
                 var location = ConvertWSCoordinates(lat, lon);
 
                 var busStop = new BusStop(id, stopCode, name, location);
@@ -34,6 +35,20 @@ namespace AtB
             return stops;
 
         }
+		
+		private string DirectionFromStopCode(string stopCode)
+		{
+			// The stop code is a string with 8 digits
+			// The fifth determines if the direction towards the city center of from
+			if(stopCode[4].Equals('1'))
+			{
+				return "(mot sentrum)";
+			}
+			else
+			{
+				return "(fra sentrum)";
+			}
+		}
 		
 		/// <summary>
 		/// Hack for converting coordinates from the web service to latitude/longtitude.

@@ -15,14 +15,13 @@ namespace iPhoneUI
 		static void Main (string[] args)
 		{
 			TinyIoCContainer.Current.Register<IBusStopRepository, BusStopRepository>();
-//#if DEBUG
-			//TinyIoCContainer.Current.Register<IGpsService, DebugGpsService>();
-//#else
+#if SIMULATOR
+			TinyIoCContainer.Current.Register<IGpsService, DebugGpsService>();
+#else
 			TinyIoCContainer.Current.Register<IGpsService, IOSGpsService>();
-//#endif
+#endif
 			UIApplication.Main(args, null, "AppDelegate");
-			//TinyIoCContainer.Current.AutoRegister();
-			//TinyIoC.TinyIoCContainer.Current.Register<FavoritesViewController>();
+			
 		}
 	}
 		
