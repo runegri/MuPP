@@ -43,22 +43,27 @@ namespace iPhoneUI
 			label.Text = _stopInfo.Name;
 			label.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
 			label.SizeToFit ();
-			label.Frame = new RectangleF (10, 0, 300, 40);
+			label.Frame = new RectangleF (10, 5, 300, 40);
 			
 			_view.Add (label);
 			
-			
 			UIButton button = UIButton.FromType (UIButtonType.RoundedRect);
-			button.SetTitle ("Legg til i favoritter", UIControlState.Normal);
-			;
-			
-			button.Frame = new RectangleF (10, 60, 150, 50);
-			
+			button.SetTitle ("Legg til i favoritter", UIControlState.Normal);			
+			button.Frame = new RectangleF (7, 45, 148, 50);
+			button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
 			_view.Add (button);
 			
 			_view.SizeToFit ();
 			
-			button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };
+			
+			UIButton mapButton = UIButton.FromType (UIButtonType.RoundedRect);
+			mapButton.SetTitle ("Se kart", UIControlState.Normal);			
+			mapButton.Frame = new RectangleF (165, 45, 148, 50);
+			//button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
+			_view.Add (mapButton);
+			
+			
+			
 			
 			webView = new UIWebView { ScalesPageToFit = false };
 			
