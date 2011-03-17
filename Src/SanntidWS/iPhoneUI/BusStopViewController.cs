@@ -47,53 +47,28 @@ namespace iPhoneUI
 			label.Text = _stopInfo.Name;
 			label.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
 			label.SizeToFit ();
-			label.Frame = new RectangleF (10, 0, 300, 40);
+			label.Frame = new RectangleF (10, 5, 300, 40);
 			
 			_view.Add (label);
 			
-			
 			UIButton button = UIButton.FromType (UIButtonType.RoundedRect);
-			button.SetTitle ("Legg til i favoritter", UIControlState.Normal);
-			;
-			
-			button.Frame = new RectangleF (10, 60, 150, 50);
-			
+			button.SetTitle ("Legg til i favoritter", UIControlState.Normal);			
+			button.Frame = new RectangleF (7, 45, 148, 50);
+			button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
 			_view.Add (button);
 			
 			_view.SizeToFit ();
 			
-			button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };
-			/*
-			var b2 = UIButton.FromType(UIButtonType.RoundedRect);
-			b2.SetTitle("Send", UIControlState.Normal);
-			b2.TouchUpInside += delegate {
-				_mail = new MFMailComposeViewController();
-				_mail.SetMessageBody("vedleggene her", false);
 			
-				((BusStopRepository)_busStopRepository).Reset();
-				
-				var dbPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), "Sanntid.db");
-				var data = File.ReadAllBytes(dbPath);
-
-				var nsData = NSData.FromArray(data);
-				
-				_mail.AddAttachmentData(nsData, "image/png", "sanntid.png");
-				
-				_mail.Finished += delegate(object sender, MFComposeResultEventArgs e) {
-					e.Controller.DismissModalViewControllerAnimated(true);
-				};
-				
-				_view.Add(_mail.View);
-				PresentModalViewController(_mail, true);
-				
-				
-			};
+			UIButton mapButton = UIButton.FromType (UIButtonType.RoundedRect);
+			mapButton.SetTitle ("Se kart", UIControlState.Normal);			
+			mapButton.Frame = new RectangleF (165, 45, 148, 50);
+			//button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
+			_view.Add (mapButton);
 			
 			
-			b2.Frame = new RectangleF(50,250,100,50);
 			
-			_view.Add(b2);
-			*/
+			
 			webView = new UIWebView { ScalesPageToFit = false };
 			
 			
