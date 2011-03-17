@@ -183,7 +183,7 @@ namespace AtB
 		{
 			return GetBusStopsFromDb()
 				.Where(stop => stop.LastAccess > DateTime.MinValue)
-				.OrderBy(stop => stop.LastAccess)
+				.OrderByDescending(stop => stop.LastAccess)
 				.Take(MostRecentCount)
 				.ToList();
 		}
