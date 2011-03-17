@@ -111,29 +111,18 @@ namespace AtB
         private List<BusStop> GetNearbyStops(double latitude, double longtitude)
         {
 			
-			var location = new GeographicCoordinate(latitude, longtitude);
-		
-            var nearbyStops = GetBusStopsFromDb()
-				.OrderBy(s => RelativeDistance(s.Location, location))
-				.Take(NumNearbyStops)
+			// Calculates the relative distance using the formula sqrt(dx*dx+dy*dy)
+			// To optimize I don't care about the sqrt, so I only calculate dx*dx + dy*dy
+			
+			var sql = "SELECT * FROM BusStop " +
+				"ORDER BY ((Latitude-?)*(Latitude-?) + (Longtitude-?)*(Longtitude-?)) " +
+				"LIMIT 0, {0}";
+			sql = string.Format(sql, NumNearbyStops);
+			
+			return _conn
+				.Query<BusStop>(sql, latitude, latitude, longtitude, longtitude)
 				.ToList();
-        
-			return nearbyStops;
-		}
-        
-        private static double RelativeDistance(GeographicCoordinate c1, GeographicCoordinate c2)
-        {
-            if (c1 == null || c2 == null)
-            {
-                return double.MaxValue;
-            }
-
-            var dlat = c1.Latitude - c2.Latitude;
-            var dlon = c1.Longtitude - c2.Longtitude;
-
-            return Math.Sqrt(dlat * dlat + dlon * dlon);
-        }
-				
+		}	
 		
 		private List<BusStop> GetBusStopsFromDb()
 		{
@@ -176,16 +165,15 @@ namespace AtB
 
 		public IList<BusStop> GetFavorites ()
 		{
-			return GetBusStopsFromDb().Where(stop => stop.IsFavorite).ToList();
+			var sql = "SELECT * FROM BusStop WHERE IsFavorite = ? ORDER BY Name";
+			return _conn.Query<BusStop>(sql, true).ToList();
 		}
 		
 		public IList<BusStop> GetMostRecent ()
 		{
-			return GetBusStopsFromDb()
-				.Where(stop => stop.LastAccess > DateTime.MinValue)
-				.OrderByDescending(stop => stop.LastAccess)
-				.Take(MostRecentCount)
-				.ToList();
+			var sql = "SELECT * FROM BusStop WHERE LastAccess > ? ORDER BY LastAccess DESC LIMIT 0,{0}";	
+			sql = string.Format(sql, MostRecentCount);
+			return _conn.Query<BusStop>(sql, DateTime.MinValue).ToList();
 		}
 
 		public IList<BusStop> GetNearby ()
