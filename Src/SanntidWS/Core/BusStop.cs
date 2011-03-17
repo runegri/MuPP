@@ -37,6 +37,8 @@ namespace AtB
 		[Indexed]
 		public bool IsFavorite { get; set; }
 		
+		public bool TowardsCentre { get; set; } 
+		
 		public BusStop()
 		{
 			Location = new GeographicCoordinate(0,0);

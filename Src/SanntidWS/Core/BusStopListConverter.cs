@@ -24,11 +24,14 @@ namespace AtB
                 var lon = Convert.ToDouble(GetTokenValue(stop.SelectToken("lon")));
 
                 name = name.Replace(stopCode, "").Replace("()", "").Trim();
-				name = name + " " + DirectionFromStopCode(stopCode);
+				name = name;// + " " + DirectionFromStopCode(stopCode);
 				
                 var location = ConvertWSCoordinates(lat, lon);
 
                 var busStop = new BusStop(id, stopCode, name, location);
+				
+				busStop.TowardsCentre = stopCode[4].Equals('1');
+				
                 stops.Add(busStop);
             }
 

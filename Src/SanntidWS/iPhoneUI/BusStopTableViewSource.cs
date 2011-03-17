@@ -73,6 +73,7 @@ namespace iPhoneUI
 			
 			BusStop stopInfo = GetBusStop(indexPath);
 			cell.TextLabel.Text = stopInfo.Name;
+			cell.DetailTextLabel.Text = stopInfo.TowardsCentre ? "Til sentrum" : "Fra sentrum";
 			
 			return cell;
 		}
@@ -105,7 +106,7 @@ namespace iPhoneUI
 
 			if (cell != null) return cell;
 			
-			cell = new UITableViewCell (UITableViewCellStyle.Default, kCellIdentifier);
+			cell = new UITableViewCell (UITableViewCellStyle.Subtitle, kCellIdentifier);
 			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 			return cell;
 		}
