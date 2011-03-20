@@ -99,6 +99,9 @@
     <Compile Include="TableData\BaseBusStopTableViewSource.cs" />
     <Compile Include="TableData\BusStopTableViewSource.cs" />
     <Compile Include="TableData\SimpleBusStopTableViewSource.cs" />
+    <Compile Include="MapViewController.cs" />
+    <Compile Include="BusStopMapAnnotation.cs" />
+    <Compile Include="BusStopExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -110,7 +113,6 @@
     <Folder Include="Controller\" />
     <Folder Include="Images\" />
     <Folder Include="TableData\" />
-    <Folder Include="Db\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -125,6 +127,5 @@
   <ItemGroup>
     <Content Include="Images\buss 114.png" />
     <Content Include="Images\buss 57.png" />
-    <Content Include="Db\sanntid.db" />
   </ItemGroup>
 </Project>

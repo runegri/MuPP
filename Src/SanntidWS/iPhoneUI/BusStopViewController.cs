@@ -78,13 +78,15 @@ namespace iPhoneUI
 			button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
 			_view.Add (button);
 			
-			_view.SizeToFit ();
-			
+			_view.SizeToFit ();			
 			
 			UIButton mapButton = UIButton.FromType (UIButtonType.RoundedRect);
 			mapButton.SetTitle ("Se kart", UIControlState.Normal);			
 			mapButton.Frame = new RectangleF (165, y, 145, 50);
-			//button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
+			mapButton.TouchUpInside += delegate { 
+				this.NavigationController.PushViewController (new MapViewController(_stopInfo.Name, _stopInfo), true);
+				//_busStopRepository.AddFavorite (_stopInfo); 
+			};			
 			_view.Add (mapButton);
 						
 			// Reposition and resize the receiver
