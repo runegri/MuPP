@@ -17,11 +17,11 @@ namespace iPhoneUI
 	public class MapViewController : UIViewController
 	{
 		private MKMapView _map;
-		private BusStop _busStop;
+		private BusStop[] _busStops;
 		
-		public MapViewController (string title, BusStop stopInfo)
+		public MapViewController (string title, params BusStop[] busStops)
 		{
-			_busStop = stopInfo;
+			_busStops = busStops;
 			this.Title = title;
 		}
 
@@ -29,11 +29,16 @@ namespace iPhoneUI
 		{
 			_map = new MKMapView();			
 			
-			AddBusStopToMap(_map, _busStop);
+			foreach(BusStop busStop in _busStops)
+			{
+				AddBusStopToMap(_map, busStop);
+			}	
+			
+			AddBusStopToMap(_map, _busStops[0]);
 						
 			_map.Frame = new RectangleF (0, 0, this.View.Bounds.Width, this.View.Bounds.Height);
 			
-			_map.Region = new MKCoordinateRegion(_busStop.GetCLLocationCoordinate2D(), new MKCoordinateSpan(0.005, 0.0005));
+			_map.Region = new MKCoordinateRegion(_busStops[0].GetCLLocationCoordinate2D(), new MKCoordinateSpan(0.005, 0.0005));
 			
 			this.View.AddSubview (_map);
 		}
@@ -41,7 +46,7 @@ namespace iPhoneUI
 		
 		private void AddBusStopToMap(MKMapView map, BusStop busStop)
 		{
-			BusStopMapAnnotation annotation = new BusStopMapAnnotation(_busStop);
+			BusStopMapAnnotation annotation = new BusStopMapAnnotation(busStop);
 			map.AddAnnotation(annotation);
 		}
 	}

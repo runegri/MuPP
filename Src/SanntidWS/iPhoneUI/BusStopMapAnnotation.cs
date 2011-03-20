@@ -23,5 +23,10 @@ namespace iPhoneUI
 		{
 			get { return _busStop.Name;	}
 		}
+		
+		public override string Subtitle 
+		{
+			get { return _busStop.TowardsCentreText; }
+		}
 	}
 }
