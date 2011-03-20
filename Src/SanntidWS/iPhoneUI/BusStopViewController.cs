@@ -61,18 +61,7 @@ namespace iPhoneUI
 			mapButton.Frame = new RectangleF (165, 45, 148, 50);
 			//button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
 			_view.Add (mapButton);
-			
-			
-			
-			
-			webView = new UIWebView { ScalesPageToFit = false };
-			
-			
-			webView.LoadHtmlString (FormatText (), new NSUrl ());
-			
-			// Set the web view to fit the width of the app.
-			webView.SizeToFit ();
-			
+						
 			// Reposition and resize the receiver
 			_view.Frame = new RectangleF (0, 0, this.View.Bounds.Width, this.View.Bounds.Height);
 			
@@ -110,18 +99,5 @@ namespace iPhoneUI
 			});
 		}
 
-		private string FormatText ()
-		{
-			StringBuilder sb = new StringBuilder ();
-			
-			sb.Append (@"<style>body,b,p{font-family:Helvetica;font-size:14px}</style>");
-			
-			sb.Append ("<p>Holdeplass navn: " + _stopInfo.Name + "</p>" + Environment.NewLine);
-			sb.Append ("<p>Holdeplass nr: " + _stopInfo.StopCode + "</p>" + Environment.NewLine);
-			sb.Append ("<p>Latitude: " + _stopInfo.Latitude + "</p>" + Environment.NewLine);
-			sb.Append ("<p>Longitude: " + _stopInfo.Latitude + "</p>" + Environment.NewLine);
-			
-			return sb.ToString ();
-		}
 	}
 }
