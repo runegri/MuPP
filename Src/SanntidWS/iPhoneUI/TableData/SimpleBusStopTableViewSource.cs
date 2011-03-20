@@ -8,11 +8,15 @@ namespace iPhoneUI
 	public class SimpleBusStopTableViewSource : BaseBusStopTableViewSource
 	{
 		private IList<BusStop> _busStops;
-				
-		public SimpleBusStopTableViewSource (UIViewController controller,  IList<BusStop> busStops)
+		private IBusStopRepository _busStopRepository;
+		
+		public SimpleBusStopTableViewSource (
+                 UIViewController controller, 
+                 IBusStopRepository busStopRepository,  
+                 IList<BusStop> busStops)
 		{
 			_controller = controller;
-			
+			_busStopRepository = busStopRepository;
 			_busStops = busStops;
 		}
 
@@ -30,7 +34,9 @@ namespace iPhoneUI
 		{
 			if(editingStyle == UITableViewCellEditingStyle.Delete)
 			{
-				_busStops.Remove(GetBusStop(indexPath));
+				var busStop = GetBusStop(indexPath);
+				_busStops.Remove(busStop);
+				_busStopRepository.RemoveFavorite(busStop);
 				tableView.DeleteRows(new [] {indexPath}, UITableViewRowAnimation.Fade);
 			}
 		}

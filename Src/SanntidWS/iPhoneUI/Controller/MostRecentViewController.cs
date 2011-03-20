@@ -20,7 +20,7 @@ namespace iPhoneUI
 			this.Title = "Sist brukte";
 			_tableView = new UITableView(View.Bounds, UITableViewStyle.Plain);
 						
-			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository.GetMostRecent());
+			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _busStopRepository.GetMostRecent());
 			
 			View.AddSubview(_tableView);
 		}
@@ -28,7 +28,7 @@ namespace iPhoneUI
 		
 		public override void ViewWillAppear (bool animated)
 		{
-			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository.GetMostRecent());			
+			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _busStopRepository.GetMostRecent());			
 		}
 	}
 }

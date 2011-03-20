@@ -190,8 +190,8 @@ namespace AtB
 
 		public IList<BusStop> GetFavorites ()
 		{
-			var sql = "SELECT * FROM BusStop WHERE IsFavorite = ? ORDER BY Name";
-			return _conn.Query<BusStop>(sql, true).ToList();
+			var sql = "SELECT * FROM BusStop WHERE IsFavorite = 1 ORDER BY Name";
+			return _conn.Query<BusStop>(sql).ToList();
 		}
 		
 		public IList<BusStop> GetMostRecent ()
@@ -222,13 +222,17 @@ namespace AtB
 		public void AddFavorite (BusStop busStop)
 		{
 			busStop.IsFavorite = true;
+			_conn.BeginTransaction();
 			_conn.Update(busStop);
+			_conn.Commit();
 		}
 
 		public void RemoveFavorite (BusStop busStop)
 		{
 			busStop.IsFavorite = false;
+			_conn.BeginTransaction();
 			_conn.Update(busStop);
+			_conn.Commit();
 		}
 		
 		#endregion

@@ -20,14 +20,14 @@ namespace iPhoneUI
 			this.Title = "Nær deg";
 			_tableView = new UITableView(View.Bounds, UITableViewStyle.Plain);
 						
-			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository.GetNearby());
+			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _busStopRepository.GetNearby());
 			
 			View.AddSubview(_tableView);
 		}
 		
 		public override void ViewDidAppear (bool animated)
 		{
-			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository.GetNearby());
+			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _busStopRepository.GetNearby());
 		}
 	}
 	
