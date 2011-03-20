@@ -10,6 +10,8 @@ using System.Threading;
 using System.Drawing;
 using System.Text;
 using AtB;
+using MonoTouch.MessageUI;
+using System.IO;
 
 namespace iPhoneUI
 {
@@ -24,7 +26,9 @@ namespace iPhoneUI
 		private BusStop _stopInfo;
 
 		private IBusStopRepository _busStopRepository = TinyIoC.TinyIoCContainer.Current.Resolve<IBusStopRepository> ();
-
+		
+	//	private MFMailComposeViewController _mail;
+		
 		public BusStopViewController (BusStop stopInfo)
 		{
 			_stopInfo = stopInfo;
