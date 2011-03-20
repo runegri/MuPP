@@ -25,6 +25,7 @@ namespace iPhoneUI
 		{	
 			this.Title = "Alle";
 			
+			// Hack! Not sure if 90 pixels are correct on all models
 			RectangleF rec = new RectangleF(View.Bounds.X, View.Bounds.Y, View.Bounds.Width, View.Bounds.Height - 90);
 			
 			_tableView = new UITableView(rec, UITableViewStyle.Grouped);

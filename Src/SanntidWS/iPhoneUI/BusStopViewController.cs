@@ -42,18 +42,39 @@ namespace iPhoneUI
 			
 			_view = new UIView ();
 			_view.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
+						
+			int y = 5;
+			int x = 10;
 			
-			UILabel label = new UILabel ();
+			UILabel label = new UILabel();
+			label.Font = UIFont.BoldSystemFontOfSize(20);
 			label.Text = _stopInfo.Name;
-			label.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
-			label.SizeToFit ();
-			label.Frame = new RectangleF (10, 5, 300, 40);
+			label.BackgroundColor = UIColor.Clear;
+			label.ShadowOffset = new SizeF(0,1);
+			label.ShadowColor = UIColor.White;
+			label.Frame = new RectangleF (x, y, 300, 30);
 			
 			_view.Add (label);
 			
+			y+= 22;
+			
+			UILabel label2 = new UILabel();
+			label2.Font = UIFont.SystemFontOfSize(14);
+			label2.TextColor = UIColor.DarkGray;
+			label2.Text = _stopInfo.TowardsCentre ? "Til sentrum" : "Fra sentrum";
+			label2.BackgroundColor = UIColor.Clear;
+			label2.Frame = new RectangleF (x, y, 300, 30);
+			
+			_view.Add (label2);
+			
+			y += 35;
+			
 			UIButton button = UIButton.FromType (UIButtonType.RoundedRect);
-			button.SetTitle ("Legg til i favoritter", UIControlState.Normal);			
-			button.Frame = new RectangleF (7, 45, 148, 50);
+			button.TitleLabel.LineBreakMode = UILineBreakMode.WordWrap;
+			button.TitleLabel.TextAlignment = UITextAlignment.Center;
+			
+			button.SetTitle ("Legg til i\nfavoritter", UIControlState.Normal);			
+			button.Frame = new RectangleF (x, y, 145, 50);
 			button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
 			_view.Add (button);
 			
@@ -62,7 +83,7 @@ namespace iPhoneUI
 			
 			UIButton mapButton = UIButton.FromType (UIButtonType.RoundedRect);
 			mapButton.SetTitle ("Se kart", UIControlState.Normal);			
-			mapButton.Frame = new RectangleF (165, 45, 148, 50);
+			mapButton.Frame = new RectangleF (165, y, 145, 50);
 			//button.TouchUpInside += delegate { _busStopRepository.AddFavorite (_stopInfo); };			
 			_view.Add (mapButton);
 						
