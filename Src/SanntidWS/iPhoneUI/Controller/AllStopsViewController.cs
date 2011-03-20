@@ -8,6 +8,7 @@ using MonoTouch.CoreLocation;
 using MonoTouch.MapKit;
 using System.Threading;
 using AtB;
+using System.Drawing;
 namespace iPhoneUI
 {
 	public class AllStopsViewController : UIViewController
@@ -23,7 +24,11 @@ namespace iPhoneUI
 		public override void ViewDidLoad ()
 		{	
 			this.Title = "Alle";
-			_tableView = new UITableView(View.Bounds, UITableViewStyle.Grouped);
+			
+			// Hack! Not sure if 90 pixels are correct on all models
+			RectangleF rec = new RectangleF(View.Bounds.X, View.Bounds.Y, View.Bounds.Width, View.Bounds.Height - 90);
+			
+			_tableView = new UITableView(rec, UITableViewStyle.Grouped);
 			
 			_tableView.Source = new BusStopTableViewSource(this, _busStopRepository.GetAll());
 			
