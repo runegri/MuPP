@@ -51,6 +51,7 @@ namespace iPhoneUI
 			BusStopMapAnnotation annotation = new BusStopMapAnnotation(busStop);
 			map.AddAnnotation(annotation);
 		}
+		
 	}
 	
 	
