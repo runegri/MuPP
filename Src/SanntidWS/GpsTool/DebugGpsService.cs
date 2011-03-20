@@ -9,8 +9,12 @@ namespace GpsTool
 		NSTimer _timer;
 		bool _running;
 		
+		double _latitude, _longtitude;
+		
 		public DebugGpsService ()
 		{
+			_latitude = 63.425630295;
+			_longtitude = 10.4458852325;
 			_timer = NSTimer.CreateRepeatingScheduledTimer(1, TimerEvent);
 		}
 		
@@ -18,11 +22,13 @@ namespace GpsTool
 		{
 			if(_running)
 			{
-				var loc = new LocationData(63.425630295, 10.4458852325, 0, 1, DateTime.Now);
+				var loc = new LocationData(_latitude, _longtitude, 0, 1, DateTime.Now);
 				if(LocationChanged != null)
 				{
 					LocationChanged(loc);
 				}
+				_latitude += 0.000001;
+				_longtitude += 0.000001;
 			}
 		}
 		

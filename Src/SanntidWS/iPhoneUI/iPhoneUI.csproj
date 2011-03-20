@@ -127,5 +127,6 @@
   <ItemGroup>
     <Content Include="Images\buss 114.png" />
     <Content Include="Images\buss 57.png" />
+    <Content Include="Db\sanntid.db" />
   </ItemGroup>
 </Project>

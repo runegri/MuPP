@@ -46,7 +46,7 @@ namespace iPhoneUI
 			
 			NavigationItem.RightBarButtonItem.Enabled = _nearbyBusStops.Count > 0;
 			
-			_tableView.Source = new SimpleBusStopTableViewSource(this, _nearbyBusStops);
+			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _nearbyBusStops);
 		}
 	}
 }

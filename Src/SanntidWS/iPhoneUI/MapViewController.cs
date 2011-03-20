@@ -24,7 +24,7 @@ namespace iPhoneUI
 			_busStops = busStops;
 			this.Title = title;
 		}
-
+		
 		public override void ViewDidLoad ()
 		{
 			_map = new MKMapView();			
@@ -35,7 +35,9 @@ namespace iPhoneUI
 			}	
 			
 			AddBusStopToMap(_map, _busStops[0]);
-						
+			
+			_map.ShowsUserLocation = true;
+			
 			_map.Frame = new RectangleF (0, 0, this.View.Bounds.Width, this.View.Bounds.Height);
 			
 			_map.Region = new MKCoordinateRegion(_busStops[0].GetCLLocationCoordinate2D(), new MKCoordinateSpan(0.005, 0.0005));
