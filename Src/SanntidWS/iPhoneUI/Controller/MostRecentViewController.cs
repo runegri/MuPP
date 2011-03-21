@@ -25,11 +25,9 @@ namespace iPhoneUI
 			View.AddSubview(_tableView);
 		}
 		
-		
 		public override void ViewWillAppear (bool animated)
 		{
 			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _busStopRepository.GetMostRecent());			
 		}
 	}
 }
-

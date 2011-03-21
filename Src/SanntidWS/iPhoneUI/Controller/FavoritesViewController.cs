@@ -40,8 +40,6 @@ namespace iPhoneUI
 			this.Title = "Favoritter";
 			_tableView = new UITableView(View.Bounds, UITableViewStyle.Plain);
 						
-			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _busStopRepository.GetFavorites());
-			
 			View.AddSubview(_tableView);
 		}
 		
@@ -49,13 +47,6 @@ namespace iPhoneUI
 		{
 			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _busStopRepository.GetFavorites());
 		}
-		
-		
-
 	}
-	
-
-	
-
 }
 

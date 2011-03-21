@@ -5,43 +5,33 @@ namespace iPhoneUI
 {
 	public class TabBarController : UITabBarController
 	{
-		private AllStopsViewController _allStopsViewController;		
-		private FavoritesViewController _favoritesViewController;
-	    private MostRecentViewController _mostRecentViewController;
-		private NearbyViewController _nearbyViewController;
+		private int _tabCounter = 0;
 		
 		public override void ViewDidLoad ()
 		{
-			_favoritesViewController = TinyIoCContainer.Current.Resolve<FavoritesViewController>();
+			UINavigationController favoritesNavController = CreateNavigationController<FavoritesViewController>("Favoritter", "28-star.png");
 			
-			UINavigationController favoritesNavController = new UINavigationController();
-			favoritesNavController.TabBarItem = new UITabBarItem(UITabBarSystemItem.Favorites, 0);			
-			favoritesNavController.PushViewController(_favoritesViewController, false);
-
-			_mostRecentViewController = TinyIoCContainer.Current.Resolve<MostRecentViewController>();
-
-			UINavigationController mostRecentNavController = new UINavigationController();
-			mostRecentNavController.TabBarItem = new UITabBarItem(UITabBarSystemItem.MostRecent, 1);			
-			mostRecentNavController.PushViewController(_mostRecentViewController, false);
-
-			_nearbyViewController = TinyIoCContainer.Current.Resolve<NearbyViewController>();
-
-			UINavigationController nearbyNavController = new UINavigationController();
-			nearbyNavController.TabBarItem = new UITabBarItem("Nær deg", null, 2);			
-			nearbyNavController.PushViewController(_nearbyViewController, false);
+			UINavigationController mostRecentNavController = CreateNavigationController<MostRecentViewController>("Sist brukte", "104-index-cards.png");
 			
-			_allStopsViewController = TinyIoCContainer.Current.Resolve<AllStopsViewController>();
+			UINavigationController nearbyNavController = CreateNavigationController<NearbyViewController>("Nær deg", "71-compass.png");
 			
-			UINavigationController allStopsNavController = new UINavigationController();
-			allStopsNavController.TabBarItem = new UITabBarItem("Alle", null, 3);			
-			allStopsNavController.PushViewController(_allStopsViewController, false);
-			
-			var tablist = new UIViewController[] 
+			UINavigationController allStopsNavController = CreateNavigationController<AllStopsViewController>("Alle", "43-bus.png");
+		
+			ViewControllers = new UIViewController[] 
 			{
 			   favoritesNavController, mostRecentNavController, nearbyNavController, allStopsNavController	
 			};
+		}
+		
+		private UINavigationController CreateNavigationController<T>(string title, string imageName) where T : UIViewController
+		{
+			UIViewController viewController = TinyIoCContainer.Current.Resolve<T>();
+
+			UINavigationController navController = new UINavigationController();
+			navController.TabBarItem = new UITabBarItem(title, UIImage.FromFile(@"Images/" + imageName), _tabCounter++);			
+			navController.PushViewController(viewController, false);
 			
-			ViewControllers = tablist;
-		}		
+			return navController;
+		}
 	}
 }
