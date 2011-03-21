@@ -40,11 +40,18 @@ namespace iPhoneUI
 			
 			_map.Frame = new RectangleF (0, 0, this.View.Bounds.Width, this.View.Bounds.Height);
 			
-			_map.Region = new MKCoordinateRegion(_busStops[0].GetCLLocationCoordinate2D(), new MKCoordinateSpan(0.005, 0.0005));
+			_map.Region = new MKCoordinateRegion(FindCentre(_busStops), new MKCoordinateSpan(0.005, 0.0005));
 			
 			this.View.AddSubview (_map);
 		}
 		
+		// Something for Applicable
+		private CLLocationCoordinate2D FindCentre(IList<BusStop> busStops) 
+		{
+			double latitude = busStops.Average(bs => bs.Latitude);
+			double longitude = busStops.Average(bs => bs.Longtitude);
+			return new CLLocationCoordinate2D(latitude, longitude);
+		}
 		
 		private void AddBusStopToMap(MKMapView map, BusStop busStop)
 		{
