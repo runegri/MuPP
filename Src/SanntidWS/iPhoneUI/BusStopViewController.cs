@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.UIKit;
 using System.Drawing;
+using System;
 using AtB;
 
 namespace iPhoneUI
@@ -93,7 +94,7 @@ namespace iPhoneUI
 						label.BackgroundColor = UIColor.Clear;
 						label.Frame = new RectangleF (10, y, 300, 30);
 						_view.Add (label);
-						y += 35;
+						y += 30;
 					}
 				} 
 				else 
@@ -103,7 +104,19 @@ namespace iPhoneUI
 					label.BackgroundColor = UIColor.Clear;
 					label.Frame = new RectangleF (10, y, 300, 30);
 					_view.Add (label);
+					
+					y += 30;
 				}
+				
+				
+				UILabel label2 = new UILabel();
+				label2.Font = UIFont.SystemFontOfSize(14);
+				label2.TextColor = UIColor.DarkGray;
+				label2.Text = "oppdatert " + DateTime.Now.ToString("HH:mm:ss");
+				label2.BackgroundColor = UIColor.Clear;
+				label2.Frame = new RectangleF (10, y, 300, 30);
+				
+				_view.Add (label2);
 			});
 		}
 	}
