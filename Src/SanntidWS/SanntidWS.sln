@@ -17,11 +17,11 @@ Global
 		Release|iPhoneSimulator = Release|iPhoneSimulator
 		Debug|iPhone = Debug|iPhone
 		Release|iPhone = Release|iPhone
-		Ad Hoc Distribution|iPhone = Ad Hoc Distribution|iPhone
+		AdHoc|iPhone = AdHoc|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Ad Hoc Distribution|iPhone.ActiveCfg = Ad Hoc Distribution|iPhone
-		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Ad Hoc Distribution|iPhone.Build.0 = Ad Hoc Distribution|iPhone
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.AdHoc|iPhone.ActiveCfg = AdHoc|iPhone
+		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.AdHoc|iPhone.Build.0 = AdHoc|iPhone
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Debug|iPhone.Build.0 = Debug|iPhone
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
@@ -30,8 +30,8 @@ Global
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhone.Build.0 = Release|iPhone
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{19D27A1B-6A53-42A8-AE91-A2D51A26FF04}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{28212E69-B40A-44A9-954A-3F64554AC224}.Ad Hoc Distribution|iPhone.ActiveCfg = Debug|iPhone
-		{28212E69-B40A-44A9-954A-3F64554AC224}.Ad Hoc Distribution|iPhone.Build.0 = Debug|iPhone
+		{28212E69-B40A-44A9-954A-3F64554AC224}.AdHoc|iPhone.ActiveCfg = AdHoc|iPhone
+		{28212E69-B40A-44A9-954A-3F64554AC224}.AdHoc|iPhone.Build.0 = AdHoc|iPhone
 		{28212E69-B40A-44A9-954A-3F64554AC224}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{28212E69-B40A-44A9-954A-3F64554AC224}.Debug|iPhone.Build.0 = Debug|iPhone
 		{28212E69-B40A-44A9-954A-3F64554AC224}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
@@ -40,8 +40,8 @@ Global
 		{28212E69-B40A-44A9-954A-3F64554AC224}.Release|iPhone.Build.0 = Release|iPhone
 		{28212E69-B40A-44A9-954A-3F64554AC224}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{28212E69-B40A-44A9-954A-3F64554AC224}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Ad Hoc Distribution|iPhone.ActiveCfg = Debug|iPhone
-		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Ad Hoc Distribution|iPhone.Build.0 = Debug|iPhone
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.AdHoc|iPhone.ActiveCfg = AdHoc|iPhone
+		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.AdHoc|iPhone.Build.0 = AdHoc|iPhone
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Debug|iPhone.Build.0 = Debug|iPhone
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
@@ -50,8 +50,8 @@ Global
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhone.Build.0 = Release|iPhone
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{3D0B3B6B-0BBA-4FF9-A963-12D564BC75C3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Ad Hoc Distribution|iPhone.ActiveCfg = Ad Hoc Distribution|iPhone
-		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Ad Hoc Distribution|iPhone.Build.0 = Ad Hoc Distribution|iPhone
+		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.AdHoc|iPhone.ActiveCfg = AdHoc|iPhone
+		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.AdHoc|iPhone.Build.0 = AdHoc|iPhone
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Debug|iPhone.Build.0 = Debug|iPhone
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
@@ -60,8 +60,8 @@ Global
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Release|iPhone.Build.0 = Release|iPhone
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{A0357D03-44B4-4CB8-B9CA-59B5A105B51E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{C5002037-18B0-4394-B517-83DF3593091A}.Ad Hoc Distribution|iPhone.ActiveCfg = Debug|iPhone
-		{C5002037-18B0-4394-B517-83DF3593091A}.Ad Hoc Distribution|iPhone.Build.0 = Debug|iPhone
+		{C5002037-18B0-4394-B517-83DF3593091A}.AdHoc|iPhone.ActiveCfg = AdHoc|iPhone
+		{C5002037-18B0-4394-B517-83DF3593091A}.AdHoc|iPhone.Build.0 = AdHoc|iPhone
 		{C5002037-18B0-4394-B517-83DF3593091A}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{C5002037-18B0-4394-B517-83DF3593091A}.Debug|iPhone.Build.0 = Debug|iPhone
 		{C5002037-18B0-4394-B517-83DF3593091A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator

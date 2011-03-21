@@ -75,18 +75,18 @@
     <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseSGen>false</MtouchUseSGen>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad Hoc Distribution|iPhone' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AdHoc|iPhone' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\iPhone\Ad Hoc Distribution</OutputPath>
+    <OutputPath>bin\iPhone\AdHoc</OutputPath>
     <WarningLevel>4</WarningLevel>
+    <MtouchUseSGen>false</MtouchUseSGen>
     <MtouchDebug>False</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <DefineConstants>SILVERLIGHT;PocketPC;</DefineConstants>
     <MtouchUseLlvm>false</MtouchUseLlvm>
-    <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchUseThumb>false</MtouchUseThumb>
-    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <DefineConstants>SILVERLIGHT;PocketPC;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

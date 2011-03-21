@@ -24,7 +24,6 @@ namespace AtB
                 var lon = Convert.ToDouble(GetTokenValue(stop.SelectToken("lon")));
 
                 name = name.Replace(stopCode, "").Replace("()", "").Trim();
-				name = name;// + " " + DirectionFromStopCode(stopCode);
 				
                 var location = ConvertWSCoordinates(lat, lon);
 
