@@ -128,5 +128,13 @@
     <Content Include="Images\buss 114.png" />
     <Content Include="Images\buss 57.png" />
     <Content Include="Db\sanntid.db" />
+    <Content Include="Images\71-compass.png" />
+    <Content Include="Images\43-bus%402x.png" />
+    <Content Include="Images\43-bus.png" />
+    <Content Include="Images\28-star.png" />
+    <Content Include="Images\28-star%402x.png" />
+    <Content Include="Images\104-index-cards.png" />
+    <Content Include="Images\104-index-cards%402x.png" />
+    <Content Include="Images\71-compass%402x.png" />
   </ItemGroup>
 </Project>
