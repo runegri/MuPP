@@ -12,6 +12,9 @@ namespace iPhoneUI
 		private UIView _view;
 		private BusStop _busStop;
 		private IBusStopRepository _busStopRepository = TinyIoC.TinyIoCContainer.Current.Resolve<IBusStopRepository> ();
+		private UIActivityIndicatorView _activityIndicator;
+		
+		private List<UILabel> _realTimeData = new List<UILabel>();
 		
 		public BusStopViewController (BusStop stopInfo)
 		{
@@ -62,11 +65,25 @@ namespace iPhoneUI
 				NavigationController.PushViewController (new MapViewController(_busStop.Name, _busStop), true);
 			};
 			_view.Add (mapButton);
+			
+			_activityIndicator = new UIActivityIndicatorView();
+			_activityIndicator.Frame = new RectangleF(View.Frame.Width - 50, 10, 30, 30);
+			_activityIndicator.ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray;
+			
+			_view.Add(_activityIndicator);
 						
 			_view.Frame = new RectangleF (0, 0, this.View.Bounds.Width, this.View.Bounds.Height);
 			
 			this.View.AddSubview (_view);
 			
+			var refreshButton = new UIBarButtonItem("Oppdater", UIBarButtonItemStyle.Bordered, delegate { RefreshRealTimeData(); });
+			NavigationItem.RightBarButtonItem = refreshButton;
+			RefreshRealTimeData();
+		}
+		
+		private void RefreshRealTimeData()
+		{
+			_activityIndicator.StartAnimating();
 			_busStopRepository.GetRealTimeData (_busStop, RealTimeDataLoaded);
 		}
 		
@@ -85,16 +102,23 @@ namespace iPhoneUI
 			
 			InvokeOnMainThread (() =>
 			{
+				foreach(var label in _realTimeData)
+				{
+					label.RemoveFromSuperview();
+				}
+				_activityIndicator.StopAnimating();
 				var y = 140;
 				if (stops.Any ()) 
 				{
-					foreach (var stop in stops) {
+					foreach (var stop in stops)
+					{
 						UILabel label = new UILabel ();
 						label.Text = stop.ToString ();
 						label.BackgroundColor = UIColor.Clear;
 						label.Frame = new RectangleF (10, y, 300, 30);
 						_view.Add (label);
 						y += 30;
+						_realTimeData.Add(label);
 					}
 				} 
 				else 
@@ -104,8 +128,8 @@ namespace iPhoneUI
 					label.BackgroundColor = UIColor.Clear;
 					label.Frame = new RectangleF (10, y, 300, 30);
 					_view.Add (label);
-					
 					y += 30;
+					_realTimeData.Add(label);
 				}
 				
 				
@@ -115,8 +139,8 @@ namespace iPhoneUI
 				label2.Text = "oppdatert " + DateTime.Now.ToString("HH:mm:ss");
 				label2.BackgroundColor = UIColor.Clear;
 				label2.Frame = new RectangleF (10, y, 300, 30);
-				
 				_view.Add (label2);
+				_realTimeData.Add(label2);
 			});
 		}
 	}
