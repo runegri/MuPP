@@ -11,7 +11,21 @@ namespace AtB
 
         public string RouteNr { get; private set; }
         public string RouteName { get; private set; }
-        public DateTime Time { get; private set; }
+        private DateTime _time;
+		public DateTime Time 
+		{ 
+			get { return _time; }
+			private set 
+			{ 
+				_time = value; 
+				// Fix for dates that sometimes can be wrong. The time is still correct
+				if(_time.Date < DateTime.Now.Date)
+				{
+					_time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 
+						                     _time.Hour, _time.Minute, _time.Second);
+				}
+			}
+		}
         public StopTimeType TimeType { get; private set; }
 
         public StopTime(string routeNr, string routeName, string time, string timeType)
@@ -30,7 +44,7 @@ namespace AtB
         public override string ToString()
         {
             var result = "Rute " + RouteNr + " kl " + Time.ToShortTimeString() + (TimeType == StopTimeType.Schedule ? "" : "*");
-
+			
             var timeDiff = Time - DateTime.Now;
             if (timeDiff.TotalMinutes < 30 && timeDiff.TotalMinutes > 0)
             {

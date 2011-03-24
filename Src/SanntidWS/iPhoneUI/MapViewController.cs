@@ -40,9 +40,43 @@ namespace iPhoneUI
 			
 			_map.Frame = new RectangleF (0, 0, this.View.Bounds.Width, this.View.Bounds.Height);
 			
-			_map.Region = new MKCoordinateRegion(FindCentre(_busStops), new MKCoordinateSpan(0.005, 0.0005));
+			if(_busStops.Length <= 1)
+			{
+				_map.Region = new MKCoordinateRegion(FindCentre(_busStops), new MKCoordinateSpan(0.005, 0.0005));
+			}
+			else
+			{
+				_map.Region = RegionThatFitsAllStops(_busStops);
+			}
 			
 			this.View.AddSubview (_map);
+		}
+		
+		private MKCoordinateRegion RegionThatFitsAllStops(IList<BusStop> busStops)
+		{
+			var minLatitude = double.MaxValue;
+			var maxLatitude = double.MinValue;
+			var minLongtitude = double.MaxValue;
+			var maxLongtitude = double.MinValue;
+			
+			foreach(var busStop in busStops)
+			{				
+				minLatitude = Math.Min(minLatitude, busStop.Latitude);
+				maxLatitude = Math.Max(maxLatitude, busStop.Latitude);
+				minLongtitude = Math.Min(minLongtitude, busStop.Longtitude);
+				maxLongtitude = Math.Max(maxLongtitude, busStop.Longtitude);				
+			}
+			
+			var centerLatitude = (minLatitude + maxLatitude) / 2;
+			var centerLongtitude = (minLongtitude + maxLongtitude) / 2;
+			
+			var dLatitude = (maxLatitude - minLatitude) * 1.1;
+			var dLongtitude = (maxLongtitude - minLongtitude) * 1.1;
+			
+			return new MKCoordinateRegion(
+                      new CLLocationCoordinate2D(centerLatitude, centerLongtitude), 
+                      new MKCoordinateSpan(dLatitude, dLongtitude));
+			
 		}
 		
 		// Something for Applicable

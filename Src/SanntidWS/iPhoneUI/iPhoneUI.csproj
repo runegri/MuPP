@@ -93,7 +93,7 @@
     <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchI18n />
-    <CodesignProvision>99B2B0F1-C347-477F-91F4-2BFA2EE1923C</CodesignProvision>
+    <CodesignProvision>4D113DB6-AB0C-40A4-9A03-DF36330D1B9F</CodesignProvision>
     <MtouchExtraArgs>-v -v -v</MtouchExtraArgs>
   </PropertyGroup>
   <ItemGroup>
