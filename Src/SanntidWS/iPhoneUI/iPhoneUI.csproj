@@ -119,6 +119,10 @@
     <Compile Include="MapViewController.cs" />
     <Compile Include="BusStopMapAnnotation.cs" />
     <Compile Include="BusStopExtensions.cs" />
+    <Compile Include="TableData\RefreshTableHeaderView.cs" />
+    <Compile Include="TableData\NearbyTableViewSource.cs" />
+    <Compile Include="Factories\LabelFactory.cs" />
+    <Compile Include="Factories\ButtonFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -130,6 +134,7 @@
     <Folder Include="Controller\" />
     <Folder Include="Images\" />
     <Folder Include="TableData\" />
+    <Folder Include="Factories\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

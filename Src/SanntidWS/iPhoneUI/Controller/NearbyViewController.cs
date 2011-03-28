@@ -9,16 +9,18 @@ namespace iPhoneUI
 	public class NearbyViewController : UIViewController
 	{
 		private IBusStopRepository _busStopRepository;
-		private UITableView _tableView;		
+		public UITableView _tableView;		
 		
 		private UIBarButtonItem _mapButton;
 		
-		private IList<BusStop> _nearbyBusStops;
+		public IList<BusStop> _nearbyBusStops;
 		
 		public NearbyViewController(IBusStopRepository busStopRepository)
 		{
 			_busStopRepository = busStopRepository;			
 		}
+		
+		public RefreshTableHeaderView _refreshHeaderView;
 		
 		public override void ViewDidLoad ()
 		{	
@@ -33,6 +35,12 @@ namespace iPhoneUI
 			_tableView = new UITableView(View.Bounds, UITableViewStyle.Plain);
 			
 			View.AddSubview(_tableView);
+			
+			_refreshHeaderView = new RefreshTableHeaderView ();
+
+			_tableView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
+
+			_tableView.AddSubview (_refreshHeaderView);
 		}
 		
 		public override void ViewDidAppear (bool animated)
@@ -40,14 +48,11 @@ namespace iPhoneUI
 			SetNearbyBusStops();
 		}
 		
-		private void SetNearbyBusStops()
+		public void SetNearbyBusStops()
 		{
 			_nearbyBusStops = _busStopRepository.GetNearby();
 			
-			NavigationItem.RightBarButtonItem.Enabled = _nearbyBusStops.Count > 0;
-			
-			_tableView.Source = new SimpleBusStopTableViewSource(this, _busStopRepository, _nearbyBusStops);
+			_tableView.Source = new NearbyTableViewSource(this, _busStopRepository, _nearbyBusStops);
 		}
 	}
 }
-

@@ -27,6 +27,9 @@ namespace AtB
 
 		public string StopCode { get; set; }
 		
+		[Ignore]
+		public string ShortStopCode { get { return StopCode.Substring(4); }}
+		
 		[Indexed]
 		public string Name { get; set; }
         
