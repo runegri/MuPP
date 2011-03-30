@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Threading;
 
@@ -43,16 +43,36 @@ namespace AtB
 
         public override string ToString()
         {
-            var result = "Rute " + RouteNr + " kl " + Time.ToShortTimeString() + (TimeType == StopTimeType.Schedule ? "" : "*");
+            var result = "Rute " + RouteNr + " ";
+			result += GetTime();
+			result += IsRealTime() ? "*" : "";
+			result += GetTimeDifference();
+
+            return result;
+        }
+		
+		public string GetTime()
+		{
+			return "kl " + Time.ToShortTimeString();	
+		}
+		
+		public string GetTimeDifference()
+		{
+			string timeDifference = "";
 			
             var timeDiff = Time - DateTime.Now;
             if (timeDiff.TotalMinutes < 30 && timeDiff.TotalMinutes > 0)
             {
-                result += " (" + (int)timeDiff.TotalMinutes + " min)";
+                timeDifference += " (" + (int)timeDiff.TotalMinutes + " min)";
             }
-
-            return result;
-        }
+			
+			return timeDifference;
+		}
+		
+		public bool IsRealTime()
+		{
+			return TimeType == StopTimeType.RealTime; 
+		}	
     }
 
     public enum StopTimeType
