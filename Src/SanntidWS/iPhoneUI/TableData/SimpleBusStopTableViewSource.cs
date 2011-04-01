@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using AtB;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System;
 
 namespace iPhoneUI
 {
 	public class SimpleBusStopTableViewSource : BaseBusStopTableViewSource
 	{
-		private IList<BusStop> _busStops;
-		private IBusStopRepository _busStopRepository;
+		protected IList<BusStop> _busStops;
+		protected IBusStopRepository _busStopRepository;
 		
 		public SimpleBusStopTableViewSource (
                  UIViewController controller, 
@@ -41,4 +42,7 @@ namespace iPhoneUI
 			}
 		}
 	}
+	
+	
+
 }

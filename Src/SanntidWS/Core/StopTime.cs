@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Threading;
 
@@ -11,7 +11,21 @@ namespace AtB
 
         public string RouteNr { get; private set; }
         public string RouteName { get; private set; }
-        public DateTime Time { get; private set; }
+        private DateTime _time;
+		public DateTime Time 
+		{ 
+			get { return _time; }
+			private set 
+			{ 
+				_time = value; 
+				// Fix for dates that sometimes can be wrong. The time is still correct
+				if(_time.Date < DateTime.Now.Date)
+				{
+					_time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 
+						                     _time.Hour, _time.Minute, _time.Second);
+				}
+			}
+		}
         public StopTimeType TimeType { get; private set; }
 
         public StopTime(string routeNr, string routeName, string time, string timeType)
@@ -29,41 +43,43 @@ namespace AtB
 
         public override string ToString()
         {
-            var result = "Rute " + RouteNr + " kl " + Time.ToShortTimeString() + (TimeType == StopTimeType.Schedule ? "" : "*");
-
-            var timeDiff = Time - DateTime.Now;
-            if (timeDiff.TotalMinutes < 30 && timeDiff.TotalMinutes > 0)
-            {
-                result += " (" + (int)timeDiff.TotalMinutes + " min)";
-            }
+            var result = "Rute " + RouteNr + " ";
+			result += GetTime();
+			result += IsRealTime() ? "*" : "";
+			result += GetTimeDifference();
 
             return result;
         }
-
-        public string TimeString
-        {
-            get
-            {
-
-                var timeDiff = Time - DateTime.Now;
-                var timeDiffString = "";
-                if (timeDiff.TotalMinutes < 30 && timeDiff.TotalMinutes > 0)
-                {
-                    timeDiffString = " (" + (int)timeDiff.TotalMinutes + " min)";
-                }
-                return Time.ToShortTimeString() + timeDiffString;
-            }
-        }
-
-        public string TimeTypeString
-        {
-            get { return TimeType == StopTimeType.RealTime ? "(Sanntid)" : "(Rutetid)"; }
-        }
-
-        public string RouteNrString
-        {
-            get { return "Rute " + RouteNr; }
-        }
+		
+		public string GetTime()
+		{
+			return "kl " + Time.ToShortTimeString();	
+		}
+		
+		public string GetTimeDifference()
+		{
+			string timeDifference = "";
+			
+            var timeDiff = Time - DateTime.Now;
+            if (timeDiff.TotalMinutes < 30)
+			{
+				var minuteDiff = (int)timeDiff.TotalMinutes;
+				if(minuteDiff == 0)
+				{ 
+					return "(nå)";
+				}
+				else
+				{ 
+					return " (" + (int)timeDiff.TotalMinutes + " min)";
+        		}
+			}
+			return "";
+		}
+		
+		public bool IsRealTime()
+		{
+			return TimeType == StopTimeType.RealTime; 
+		}	
     }
 
     public enum StopTimeType
