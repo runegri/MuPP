@@ -61,12 +61,19 @@ namespace AtB
 			string timeDifference = "";
 			
             var timeDiff = Time - DateTime.Now;
-            if (timeDiff.TotalMinutes < 30 && timeDiff.TotalMinutes > 0)
-            {
-                timeDifference += " (" + (int)timeDiff.TotalMinutes + " min)";
-            }
-			
-			return timeDifference;
+            if (timeDiff.TotalMinutes < 30)
+			{
+				var minuteDiff = (int)timeDiff.TotalMinutes;
+				if(minuteDiff == 0)
+				{ 
+					return "(nå)";
+				}
+				else
+				{ 
+					return " (" + (int)timeDiff.TotalMinutes + " min)";
+        		}
+			}
+			return "";
 		}
 		
 		public bool IsRealTime()

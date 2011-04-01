@@ -13,10 +13,10 @@
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <BundleDisplayName>AtB Sanntid</BundleDisplayName>
-    <BundleIcon>Images\buss 57.png</BundleIcon>
-    <BundleIconHigh>Images\buss 114.png</BundleIconHigh>
+    <BundleIcon>Images\appicon.png</BundleIcon>
+    <BundleIconHigh>Images\appicon@2x.png</BundleIconHigh>
     <BundleIdentifier>AtB</BundleIdentifier>
-    <BundleVersion>1.0.1</BundleVersion>
+    <BundleVersion>1.0.2</BundleVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -93,7 +93,7 @@
     <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchI18n />
-    <CodesignProvision>4D113DB6-AB0C-40A4-9A03-DF36330D1B9F</CodesignProvision>
+    <CodesignProvision>4F1C465B-4A6A-45A6-9F27-E257FE2E0C0C</CodesignProvision>
     <MtouchExtraArgs>-v -v -v</MtouchExtraArgs>
   </PropertyGroup>
   <ItemGroup>
@@ -147,8 +147,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\buss 114.png" />
-    <Content Include="Images\buss 57.png" />
     <Content Include="Db\sanntid.db" />
     <Content Include="Images\71-compass.png" />
     <Content Include="Images\43-bus%402x.png" />
@@ -158,5 +156,9 @@
     <Content Include="Images\104-index-cards.png" />
     <Content Include="Images\104-index-cards%402x.png" />
     <Content Include="Images\71-compass%402x.png" />
+    <Content Include="Images\appicon.png" />
+    <Content Include="Images\appicon%402x.png" />
+    <Content Include="default.png" />
+    <Content Include="default%402x.png" />
   </ItemGroup>
 </Project>
