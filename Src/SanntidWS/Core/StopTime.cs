@@ -39,6 +39,31 @@ namespace AtB
 
             return result;
         }
+
+        public string TimeString
+        {
+            get
+            {
+
+                var timeDiff = Time - DateTime.Now;
+                var timeDiffString = "";
+                if (timeDiff.TotalMinutes < 30 && timeDiff.TotalMinutes > 0)
+                {
+                    timeDiffString = " (" + (int)timeDiff.TotalMinutes + " min)";
+                }
+                return Time.ToShortTimeString() + timeDiffString;
+            }
+        }
+
+        public string TimeTypeString
+        {
+            get { return TimeType == StopTimeType.RealTime ? "(Sanntid)" : "(Rutetid)"; }
+        }
+
+        public string RouteNrString
+        {
+            get { return "Rute " + RouteNr; }
+        }
     }
 
     public enum StopTimeType
