@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using System.Windows;
-using Applicable;
 using SQLite;
 using System.Linq;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using Wp7Sanntid.AtB;
+using GpsTool;
 
 namespace AtB
 {
